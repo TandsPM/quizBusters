@@ -15,7 +15,7 @@
 * Simulate the working world where you do not always get to completely cherry pick your team, stack or product features
 * Practice demoing an app to help prepare for the final project and employer interviews
 
-### Requirements:
+### Functionality Requirements:
 * ES6 for server-side (NodeJS) code
 
 * NodeJS
@@ -30,6 +30,12 @@
 * PostgreSQL and pg (with promises) for DBMS
 
 * git for version control
+
+### Stretch Functionality: 
+* SPA (Single-Page Application) Behaviour
+
+* Hosting, such as Railway.app, netlify, github pages, AWS, or Azure
+
 
 # THE PLAN:
 
