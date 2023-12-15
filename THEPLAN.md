@@ -71,29 +71,32 @@
 
 * as a REGISTERED USER 
   - i can make a quiz with many questions in different formats  
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
   - i can do anything an unregistered user can do  
-                                        --> because we will only add more functionalities for Premium Users 
+            --> because we will only add more functionalities for Premium Users 
+
+  - i can not see the link to register as a new user  
+            --> because i am already a user
 
   - i can edit and delete my own quizzes but am unable to edit or delete quizzes by others  
-                                        --> because login security is important
+            --> because login security is important
 
 * as a UNREGISTERED USER 
   - i can take quizzes,                      
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
   - i can share quizzes,                     
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
   - i can share results,                     
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
   - i can log in,                           
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
   - i can register as a registered user      
-                                        --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be flexible
 
 
 
