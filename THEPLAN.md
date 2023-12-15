@@ -6,6 +6,16 @@
 * What was a struggle yesterday: there was no yesterday O.O
 * Est Project Completion: 00 % * 
 
+# THE GOAL:
+
+* Build a web app from start to finish using the tech and approaches learned to date
+* Turn requirements into a working product
+* Practice architecting an app in terms of UI/UX, Routes/API and Database
+* Manage a multi-developer project with git
+* Simulate the working world where you do not always get to completely cherry pick your team, stack or product features
+* Practice demoing an app to help prepare for the final project and employer interviews
+
+# THE PLAN:
 
 ### MVD Features 
 * users can create quizzes
