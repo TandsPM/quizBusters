@@ -15,6 +15,22 @@
 * Simulate the working world where you do not always get to completely cherry pick your team, stack or product features
 * Practice demoing an app to help prepare for the final project and employer interviews
 
+### Requirements:
+* ES6 for server-side (NodeJS) code
+
+* NodeJS
+
+* Express:
+    * RESTful routes
+
+* One or more CSS or UI "framework"s:
+    * jQuery
+    * A CSS preprocessor such as SASS, Stylus, or PostCSS for styling -- or CSS Custom properties and no CSS preprocessor
+
+* PostgreSQL and pg (with promises) for DBMS
+
+* git for version control
+
 # THE PLAN:
 
 ### MVD Features 
