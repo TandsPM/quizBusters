@@ -54,7 +54,7 @@
   * users can see a list of public quizzes
   * users can see a list of public quizzes on the home page
 
-* ajax the quizzes to remove scrolling
+* ajax the quizzes to remove scrolling (SPA behaviour i guess)
 * account locked edit and delete for quizzes
 * 1000% gotta be a Multi Page App combo thingy
 
@@ -68,6 +68,26 @@
 
 ###  User Stories 
 * as a ________ i can _________ because ________
+* as a REGISTERED USER 
+  - i can make a quiz with many questions in different formats  
+                                        --> because to attract users the app needs to be flexible
+
+* as a DIFFERENT REGISTERED USER 
+  - i can edit and delete my own quizzes but am unable to edit or delete quizzes by others  
+                                        --> because login security is important
+
+* as a UNREGISTERED USER 
+  - i can take quizzes,                      
+                                        --> because to attract users the app needs to be flexible
+  - i can share quizzes,                     
+                                        --> because to attract users the app needs to be flexible
+  - i can share results,                     
+                                        --> because to attract users the app needs to be flexible
+  - i can log in,                           
+                                        --> because to attract users the app needs to be flexible
+  - i can register as a registered user      
+                                        --> because to attract users the app needs to be flexible
+
 
 ###  Be RESTFUL 
 * BROWSE:  GET   -->  /quiz
