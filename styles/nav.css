@@ -1,0 +1,23 @@
+nav {
+  height: 120px;
+  position: fixed;
+  width: 100%;
+  padding: 1.5em;
+  border-bottom: #19005e8d;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: #252525;
+  background-image: url("https://www.transparenttextures.com/patterns/clean-textile.png");
+  display: flex;
+  justify-content: space-between;
+}
+
+#tweeter-title {
+  font-family: Bungee;
+}
+
+.tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
