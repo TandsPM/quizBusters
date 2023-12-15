@@ -1,4 +1,4 @@
-### Scrum Stuff:
+### Scrum Template:
 
 * Group members: Tandra Malm @tmalm_ , Robin Fleur @saintsappho 
 * Chosen Project: Quiz App
