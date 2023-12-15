@@ -68,6 +68,7 @@
 
 ###  User Stories 
 * as a ________ i can _________ because ________
+
 * as a REGISTERED USER 
   - i can make a quiz with many questions in different formats  
                                         --> because to attract users the app needs to be flexible
@@ -93,7 +94,7 @@
 
   - i can register as a registered user      
                                         --> because to attract users the app needs to be flexible
-                                        
+
 
 
 ###  Be RESTFUL 
@@ -104,14 +105,11 @@
 * DELETE:  POST  -->  /quiz/:id/delete
 
 
-users can share a link to a single quiz
-users can see a list of public quizzes
-users can see a list of public quizzes on the home page
+# skip the login, give em a cookie and send em home.
 
-
-### skip the login,
-
-### `http://localhost:3000/login/2
-### app.get('/login:id', (req,res) => {
-###   req.session.user_id = req.params.id
-### });`
+```js
+// http://localhost:3000/login/2
+ app.get('/login:id', (req,res) => {
+   req.session.user_id = req.params.id
+ }); 
+ ```
