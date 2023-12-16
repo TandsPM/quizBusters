@@ -15,10 +15,18 @@
   background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
 
-.user-info {
-  font-family: 'Monofett', monospace;
-  font-size: 70px;
+#logo {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.app-info {
+  // font-family: 'Monofett', monospace;
+  font-family: 'Bungee Shade', sans-serif;
+  font-size: 50px;
   margin-right: 60px;
-  color: black;
+  margin-top: -100px;
+  color: #588B8B;
   padding: 10px;
 }
