@@ -40,7 +40,7 @@ body {
  * new quiz box
  */
 
-.thatQuiz {
+.individual-quiz {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
@@ -49,11 +49,11 @@ body {
   background-color: #C8553D;
 }
 
-.thatQuiz:hover {
+.individual-quiz:hover {
   box-shadow: 5px 5px #FFD5C2;
 }
 
-.thatQuiz textarea {
+.individual-quiz textarea {
   border: none;
   color: whitesmoke;
   border-bottom: 2px solid black;
@@ -63,14 +63,14 @@ body {
   resize: none;
 }
 
-.thatQuiz button {
+.individual-quiz button {
   background-color: #FFD5C2;
   border: 2px solid #FFD5C2;
   font-family: Bungee;
   color: whitesmoke
 }
 
-.thatQuiz button:hover {
+.individual-quiz button:hover {
   background-color: cornflowerblue;
   border: 2px solid #FFD5C2;
   font-family: Bungee;

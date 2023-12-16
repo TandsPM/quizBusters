@@ -40,14 +40,14 @@
 # THE PLAN:
 
 ### MVD Features 
-* users can create quizzes
+* Registered users can create quizzes
   * constructive forms for creating quizzes
   * multiple choice forms and text forms available
   * privacy: users can make their quiz unlisted (url can be visited)
 
-* users can attempt a quiz
+* all users can attempt a quiz
   * users can see the results of their recent attempt
-  * users can share a link to the result of their attempt
+  * users can share a link to the result of their attempt // quiz_result/:id
 
 * tumblr/pinterest style homepage/dashboard of all extant quizzes 
   * users can share a link to a single quiz
@@ -68,13 +68,14 @@
 
 ###  User Stories 
 * as a ________ i can _________ because ________
+* as a ________ this is what i want _________ so that ________
 
 * as a REGISTERED USER 
   - i can make a quiz with many questions in different formats  
-            --> because to attract users the app needs to be flexible
+            --> because to attract users the app needs to be appealing to multiple individuals and their sensibilities
 
   - i can do anything an unregistered user can do  
-            --> because we will only add more functionalities for Premium Users 
+            --> because we will only add more functionalities for registered Users 
 
   - i can not see the link to register as a new user  
             --> because i am already a user
@@ -82,7 +83,7 @@
   - i can edit and delete my own quizzes but am unable to edit or delete quizzes by others  
             --> because login security is important
 
-* as a UNREGISTERED USER 
+* as a NEW USER 
   - i can take quizzes,                      
             --> because to attract users the app needs to be flexible
 
