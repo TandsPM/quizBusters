@@ -12,8 +12,26 @@ nav {
   justify-content: space-between;
 }
 
-#quizBusters {
-  font-family: 'Monofett', monospace;
+// SEARCH BAR
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  resize: none;
+  width: 350px;
+  height: 50px;
+  font-size: 12px;
+}
+
+.search-button:hover {
+  background-color: rgba(60, 64, 67, .3);
 }
 
 nav button {
@@ -77,9 +95,10 @@ nav button:disabled {
 #quizBusters {
   font-family: 'Monofett', monospace;
   font-size: 40px;
-  color: #FFD5C2;
-  background-color: black;
+  color: whitesmoke;
+  background-color: rgba(60, 64, 67, .3);
   display: inline;
   -webkit-background-clip: text;
   background-clip: text;
+  text-shadow: 2px 2px 0 rgba(60, 64, 67, .3), -2px -2px 0 rgba(60, 64, 67, .3), 2px -2px 0 rgba(60, 64, 67, .3), -2px 2px 0 rgba(60, 64, 67, .3);
 }
