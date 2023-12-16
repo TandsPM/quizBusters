@@ -23,5 +23,11 @@ nav {
 }
 
 #quizBusters {
-  font-family: 'Bungee Shade', sans-serif;
+  font-family: 'Monofett', monospace;
+  font-size: 40px;
+  color: #FFD5C2;
+  background-color: black;
+  display: inline;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
