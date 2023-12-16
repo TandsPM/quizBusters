@@ -18,9 +18,9 @@
 */
 
 body {
-  color: #ffffff;
-  background-color: #888888;
-  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  color: #FFFFFF;
+  background-color: #ffffff;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
   margin-left: auto;
   margin-right: auto;
   font-size: 24px;
@@ -40,20 +40,20 @@ body {
  * new tweet box
  */
 
-.new-tweet {
+.thatQuiz {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
   padding: 20px;
   width: 90%;
-  background-color: rgb(105, 114, 114);
+  background-color: #C8553D;
 }
 
-.new-tweet:hover {
-  box-shadow: 5px 5px #252525
+.thatQuiz:hover {
+  box-shadow: 5px 5px #FFD5C2;
 }
 
-.new-tweet textarea {
+.thatQuiz textarea {
   border: none;
   color: whitesmoke;
   border-bottom: 2px solid black;
@@ -63,18 +63,18 @@ body {
   resize: none;
 }
 
-.new-tweet button {
-  background-color: #252525;
-  border: 2px solid #252525;
+.thatQuiz button {
+  background-color: #FFD5C2;
+  border: 2px solid #FFD5C2;
   font-family: Bungee;
   color: whitesmoke
 }
 
-.new-tweet button:hover {
+.thatQuiz button:hover {
   background-color: cornflowerblue;
-  border: 2px solid #252525;
+  border: 2px solid #FFD5C2;
   font-family: Bungee;
-  color: #252525
+  color: #FFD5C2
 }
 
 .input-reactions {
@@ -134,7 +134,7 @@ body {
 }
 
 .tweet-box:hover {
-  box-shadow: 5px 5px #313131;
+  box-shadow: 5px 5px #C8553D;
 }
 
 .tweet-box header,
@@ -154,7 +154,7 @@ body {
 
 .tweet-box header .user-tag:hover {
   color: cornflowerblue;
-  text-shadow: 1px 1px #313131;
+  text-shadow: 1px 1px #C8553D;
 }
 
 .tweet-box footer .reactions {
@@ -169,7 +169,7 @@ body {
 
 .tweet-box footer .reactions .reaction:hover {
   color: cornflowerblue;
-  text-shadow: 1px 1px #313131;
+  text-shadow: 1px 1px #C8553D;
 }
 
 .tweet-box span {
