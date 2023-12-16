@@ -30,11 +30,7 @@
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
 
-   <!-- navSearch links -->
-  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
-
+  
   <!-- Fonts links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,10 +51,14 @@
 <body>
   <!-- Top nav bar (fixed) -->
   <nav>
-    <img id="icon" src="../images/logo2_transparent.png">
+    <!-- <img id="icon" src="../images/logo2_transparent.png"> -->
     <span id="quizBusters"> quizBusters!</span>
 
-    <textarea name="search" id="navSearch"></textarea>
+    <form>
+      <label for="search">Search</label>
+      <input id="search" type="search" pattern=".*\S.*" required>
+      <span class="caret"></span>
+    </form>
     
     <div class="navButtons">
       <button type="link" value="myQuizzes">My Quizzes</button>
