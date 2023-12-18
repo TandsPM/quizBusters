@@ -14,6 +14,53 @@
 
   <!-- basic head -->
   <%- include('partials/_head', { pageTitle: 'New Quiz' }) %>
+
+    <!-- doc.ready-->
+    <script>
+      $(document).ready(function() {
+        var questionCounter = 1; // Start after the first question
+
+        $(document).on('click', '.add-option-btn', function(event) {
+          event.preventDefault(); // Prevent default form submit
+          var $optionsBox = $(this).siblings("div"); // Change to class of your question options
+          console.log("options box: ", $optionsBox);
+          var optionCounter = $optionsBox.find('.new-question-option').length + 1; // Count existing options
+
+          // Create a new option input
+          var newOptionHtml = `
+               <div class="new-question-option"><input type="text" name="option-${optionCounter}" value="option-${optionCounter}" /></div>
+`;
+          // Append the new option input to the correct question's options box
+          $optionsBox.append(newOptionHtml);
+        });
+        $('.add-question-btn').click(function() {
+          event.preventDefault();
+          // Increment the question counter for unique question-ids
+          questionCounter++;
+
+          // Create a new question form
+          var newQuestionHtml = `
+           <form>
+            <label for="new-question-form-${questionCounter}">Question ${questionCounter}:</label><br>
+              <input type="text" class="new-question-form-${questionCounter}" name="new-question-form-${questionCounter}" value="Whats up?" onkeyup="updateQuestion${questionCounter}()"><br>
+            </form>
+            <h4 class="new-question-${questionCounter}">What's up?</h4>
+            <div class="question-${questionCounter}-options">
+            <fieldset>
+              <div class="new-question-options-box">
+                <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
+                <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
+                <button class="add-option-btn">Add Another option</button>
+                </div>
+                </fieldset>
+                <br>
+                </div>`;
+
+          // Append the new question HTML to the "new-questions" section
+          $('.new-quiz-questions').append(newQuestionHtml);
+        });
+      });
+    </script>
 </head>
 
 <body>
@@ -22,6 +69,7 @@
   <%- include('partials/_nav') %>
     <header>
       <div class="new-quiz-info">
+
         <!-- title -->
         <form>
           <label for="new-title-form">Title:</label><br>
@@ -55,91 +103,45 @@
     </header>
 
     <main class="new-quiz-container">
+      <form class="new-quiz-questions">
+        <section class="new-question-1">
 
-      <section class="new-quiz-questions">
-        <!-- dynamic question 1 form -->
-        <form>
+          <!-- dynamic question 1 form -->
           <label for="new-question-form">Question 1:</label><br>
           <input type="text" id="new-question-form" name="new-question-form" value="Whats up?"
             onkeyup="updateQuestion1()"><br>
-        </form>
-        <h4 id="new-question-1">What's up?</h4>
-        <script>
-          function updateQuestion1() {
-            var inputValue = document.getElementById("new-question-form").value;
-            // Update the content of the new-question-1 h1 element
-            document.getElementById("new-question-1").innerText = inputValue;
-          }
-        </script>
 
-        <div class="question-1-options">
-          <fieldset>
-            <div class="new-question-options-box">
-              <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
-              <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
-            </div>
-            <button id="add-option-btn">Add Another option</button>
-          </fieldset>
-          <br>
-        </div>
-      
-      </section>
+          <h4 id="new-question-1">What's up?</h4> <!-- This Auto Populates from updateQuestion1-->
+
+          <script>
+            function updateQuestion1() { // NEED TO MAKE UPDATEQUESTION*
+              var inputValue = document.getElementById("new-question-form").value;
+              // Update the content of the new-question-1 h1 element
+              document.getElementById("new-question-1").innerText = inputValue;
+            }
+          </script>
+
+          <!-- Questions -->
+          <div class="question-1-options">
+            <fieldset>
+              <div class="new-question-options-box"> <!-- add new options to here-->
+                <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
+                <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
+              </div>
+              <button type="button" class="add-option-btn">Add Another Option</button>
+            </fieldset>
+            <br>
+          </div>
+        </section>
+      </form> id
       <br>
-      <script>
-        $(document).ready(function() {
-          var optionCounter = 2; // Start at the third option
-          
-          $('#add-option-btn').click(function() {
-            // Increment the option counter for related option-ids
-            optionCounter++;
-            
-            // Create a new option form
-            var newOptionHtml = `
-            <div class="new-question-option"><input type="text" name="option-${optionCounter}" value="option-${optionCounter}" /></div>
-            `
-            // Append the new question HTML to the "new-questions" section
-            $('.new-question-options-box').append(newOptionHtml);
-          });
-        });
-        </script>
-      <button id="add-question-btn">Add Another Question</button>
+
+      <button class="add-question-btn">Add Another Question</button>
       <br>
-      <button>Save</button> <!-- MUST PUSH TO SQL WITHOUT REFRESHING -->
-      <script>
-        $(document).ready(function() {
-          var questionCounter = 1; // Start after the first question
-          
-          $('#add-question-btn').click(function() {
-            // Increment the question counter for unique question-ids
-            questionCounter++;
-            
-            // Create a new question form
-            var newQuestionHtml = `
-            <form>
-              <label for="new-question-form-${questionCounter}">Question ${questionCounter}:</label><br>
-              <input type="text" id="new-question-form-${questionCounter}" name="new-question-form-${questionCounter}" value="Whats up?" onkeyup="updateQuestion${questionCounter}()"><br>
-              </form>
-              <h4 id="new-question-${questionCounter}">What's up?</h4>
-              <div class="question-${questionCounter}-options">
-                <fieldset>
-                  <div class="new-question-options-box">
-                    <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
-                    <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
-                    <button id="add-option-btn">Add Another option</button>
-                    </div>
-                    </fieldset>
-                    <br>
-                    </div>`;
-                    
-                    // Append the new question HTML to the "new-questions" section
-                    $('.new-quiz-questions').append(newQuestionHtml);
-                  });
-                });
-                </script>
+      <button class="save-quiz-btn">Save</button> <!-- MUST PUSH TO SQL WITHOUT REFRESHING -->
 
     </main>
-  </div>
+    </div>
 </body>
 
 </html>
-
