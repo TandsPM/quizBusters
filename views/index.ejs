@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
   <%- include('partials/_head', { pageTitle: 'Home' }) %>
 </head>
-
 
 <body>
   <!-- Top nav bar moved to partial (fixed) -->
@@ -14,6 +12,10 @@
   <section id="page-content">
     <%- include('partials/_header') %>
     <main class="container">
+
+  <!-- login button -->
+  <a href="/login/123">Login</a>
+
       <%- include('partials/_dashboard-content') %>
     </main>
   </section>
