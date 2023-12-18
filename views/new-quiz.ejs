@@ -4,80 +4,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/styles/quizzes.css" type="text/css">
+
+  <!-- jquery plug -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- css -->
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
+  <link rel="stylesheet" href="/styles/new-quiz.css" type="text/css">
+
+  <!-- basic head -->
   <%- include('partials/_head', { pageTitle: 'New Quiz' }) %>
 </head>
 
 <body>
+  <div id="new-quiz-container"></div>
   <!-- including the nav bar  -->
   <%- include('partials/_nav') %>
-    <main class="new-quiz-container">
+    <header>
       <div class="new-quiz-info">
         <!-- title -->
         <form>
-          <label for="newQtitle">Title:</label><br>
-          <input type="text" id="newQtitle" name="newQtitle" value="My Quiz" onkeydown="updateQuizTitle()"><br>
+          <label for="new-title-form">Title:</label><br>
+          <input type="text" id="new-title-form" name="new-title-form" value="My Quiz" onkeyup="updateQuizTitle()"><br>
         </form>
-        <h1 id="newQuizTitle">QUIZ TITLE</h1>
+        <h1 id="new-quiz-title">My Quiz</h1>
         <script>
           function updateQuizTitle() {
-            var inputValue = document.getElementById("newQtitle").value;
-            // Update the content of the newQuizTitle h1 element
-            document.getElementById("newQuizTitle").innerText = inputValue;
+            var inputValue = document.getElementById("new-title-form").value;
+            // Update the content of the new-quiz-title h1 element
+            document.getElementById("new-quiz-title").innerText = inputValue;
           }
         </script>
 
         <!-- author -->
         <form>
-          <label for="newQauthor">Author:</label><br>
-          <input type="text" id="newQauthor" name="newQauthor" value="Jane Doe" onkeydown="updateQuizauthor()"><br>
+          <label for="new-author-form">Author:</label><br>
+          <input type="text" id="new-author-form" name="new-author-form" value="Jane Doe"
+            onkeyup="updateQuizauthor()"><br>
         </form>
-        <h4 id="newQuizAuthor">Jane Doe</h4>
+        <h4 id="new-quiz-author">Jane Doe</h4>
         <script>
           function updateQuizauthor() {
-            var inputValue = document.getElementById("newQauthor").value;
-            // Update the content of the quizauthor h1 element
-            document.getElementById("newQuizAuthor").innerText = inputValue;
+            var inputValue = document.getElementById("new-author-form").value;
+            // Update the content of the new-quiz-autho h1 element
+            document.getElementById("new-quiz-author").innerText = inputValue;
+          }
+        </script>
+      </div>
+
+    </header>
+
+    <main class="new-quiz-container">
+
+      <section class="new-quiz-questions">
+        <!-- dynamic question 1 form -->
+        <form>
+          <label for="new-question-form">Question 1:</label><br>
+          <input type="text" id="new-question-form" name="new-question-form" value="Whats up?"
+            onkeyup="updateQuestion1()"><br>
+        </form>
+        <h4 id="new-question-1">What's up?</h4>
+        <script>
+          function updateQuestion1() {
+            var inputValue = document.getElementById("new-question-form").value;
+            // Update the content of the new-question-1 h1 element
+            document.getElementById("new-question-1").innerText = inputValue;
           }
         </script>
 
-      </div>
-
-      <section class="cookie-quiz1">
-        <label for="cookie-quiz" class="cookie-quiz-title">Question 1</label>
-        <br />
-        <div class="quiz-content-demo">
-          <div class="question">do you prefer rain or sun?</div>
+        <div class="question-1-options">
           <fieldset>
-            <div class="answer-options">
-              <div class="answer-option"><input type="radio" name="rain" value="rain" /> i like rain!</div>
-              <div class="answer-option"><input type="radio" name="sun" value="sun" /> i like sun!</div>
-              <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
+            <div class="new-question-options-box">
+              <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
+              <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
+            </div>
+            <button id="add-option-btn">Add Another option</button>
           </fieldset>
+          <br>
         </div>
+      
       </section>
-
-
-
-      <div class="result-section">
-        <h3>Results</h3>
-        <p>Your Score: <span id="userScore">0</span></p>
-        <p>Total Correct Answers: <span id="totalCorrect">0</span></p>
-        <p>Total Questions: <span id="totalQuestions">4</span></p>
-      </div>
-
-
-      <!-- <time class="cookie-quiz-time">${ago}</time> -->
-      <div class="reactions">
-        <div class="reaction"><i class="fa-regular fa-flag"></i></div>
-        <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
-        <div class="reaction"><i class="fa-regular fa-heart"></i></div>
-      </div>
-      </section>
+      <br>
+      <script>
+        $(document).ready(function() {
+          var optionCounter = 2; // Start at the third option
+          
+          $('#add-option-btn').click(function() {
+            // Increment the option counter for related option-ids
+            optionCounter++;
+            
+            // Create a new option form
+            var newOptionHtml = `
+            <div class="new-question-option"><input type="text" name="option-${optionCounter}" value="option-${optionCounter}" /></div>
+            `
+            // Append the new question HTML to the "new-questions" section
+            $('.new-question-options-box').append(newOptionHtml);
+          });
+        });
+        </script>
+      <button id="add-question-btn">Add Another Question</button>
+      <br>
+      <button>Save</button> <!-- MUST PUSH TO SQL WITHOUT REFRESHING -->
+      <script>
+        $(document).ready(function() {
+          var questionCounter = 1; // Start after the first question
+          
+          $('#add-question-btn').click(function() {
+            // Increment the question counter for unique question-ids
+            questionCounter++;
+            
+            // Create a new question form
+            var newQuestionHtml = `
+            <form>
+              <label for="new-question-form-${questionCounter}">Question ${questionCounter}:</label><br>
+              <input type="text" id="new-question-form-${questionCounter}" name="new-question-form-${questionCounter}" value="Whats up?" onkeyup="updateQuestion${questionCounter}()"><br>
+              </form>
+              <h4 id="new-question-${questionCounter}">What's up?</h4>
+              <div class="question-${questionCounter}-options">
+                <fieldset>
+                  <div class="new-question-options-box">
+                    <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
+                    <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
+                    <button id="add-option-btn">Add Another option</button>
+                    </div>
+                    </fieldset>
+                    <br>
+                    </div>`;
+                    
+                    // Append the new question HTML to the "new-questions" section
+                    $('.new-quiz-questions').append(newQuestionHtml);
+                  });
+                });
+                </script>
 
     </main>
-
+  </div>
 </body>
 
 </html>
+
