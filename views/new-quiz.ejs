@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/styles/quizzes.css" type="text/css">
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
-  <title>New Quiz</title>
-  <%- include('partials/_head') %>
+  <%- include('partials/_head', { pageTitle: 'New Quiz' }) %>
 </head>
 
 <body>
@@ -42,7 +41,7 @@
             document.getElementById("newQuizAuthor").innerText = inputValue;
           }
         </script>
-        
+
       </div>
 
       <section class="cookie-quiz1">
