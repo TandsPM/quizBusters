@@ -12,10 +12,13 @@
   <!-- including the nav bar  -->
   <%- include('partials/_nav') %>
   <main class="quiz-container">
-    <section class="cookie-quiz">
-      <label for="cookie-quiz" class="cookie-quiz-title"> What Kinda Cookie are You?</label>
-      <br/>
-      <label for="cookie-quiz" class="cookie-quiz-author"> by Jane Doe</label>
+    <div class="quiz-title">
+      <h1>QUIZ TITLE</h1>
+      <h4>by Jane Doe</h4>
+    </div>
+
+    <section class="cookie-quiz1">
+      <label for="cookie-quiz" class="cookie-quiz-title">Question 1</label>
       <br/>
       <div class="quiz-content-demo">
         <div class="question">do you prefer rain or sun?</div>
@@ -26,7 +29,12 @@
             <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
         </fieldset>
         </div>
+    </section>
 
+    <section class="cookie-quiz2">
+      <label for="cookie-quiz" class="cookie-quiz-title">Question 2</label>
+      <br/>
+      <div class="quiz-content-demo">
         <div class="question">do you prefer books or movies?</div>
         <fieldset>
           <div class="answer-options">
@@ -34,7 +42,37 @@
             <div class="answer-option"><input type="radio" name="movies" value="movies" /> i like movies!</div>
             <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
         </fieldset>
-      </div>
+        </div>
+    </section>
+
+    <section class="cookie-quiz3">
+      <label for="cookie-quiz" class="cookie-quiz-title">Question 3</label>
+      <br/>
+      <div class="quiz-content-demo">
+        <div class="question">do you prefer shoes or boots?</div>
+        <fieldset>
+          <div class="answer-options">
+            <div class="answer-option"><input type="radio" name="books" value="books" /> i like boots!</div>
+            <div class="answer-option"><input type="radio" name="movies" value="movies" /> i like shoes!</div>
+            <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
+        </fieldset>
+        </div>
+    </section>
+
+    <section class="cookie-quiz4">
+      <label for="cookie-quiz" class="cookie-quiz-title">Question 3</label>
+      <br/>
+      <div class="quiz-content-demo">
+        <div class="question">do you prefer sweet or savory?</div>
+        <fieldset>
+          <div class="answer-options">
+            <div class="answer-option"><input type="radio" name="books" value="books" /> i like sweet!</div>
+            <div class="answer-option"><input type="radio" name="movies" value="movies" /> i like savory!</div>
+            <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
+        </fieldset>
+        </div>
+    </section>
+
       <!-- <time class="cookie-quiz-time">${ago}</time> -->
       <div class="reactions">
         <div class="reaction"><i class="fa-regular fa-flag"></i></div>

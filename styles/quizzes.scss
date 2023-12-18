@@ -3,7 +3,25 @@
   quiz box
   */
 
- .cookie-quiz {
+  // QUIZ TITLE
+  .quiz-title {
+    color: #588B8B;
+    margin-left: 30px;
+    h1 {
+      margin-bottom: 5px;
+    }
+    h4 {
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+  }
+
+/////////////////////////////////////////////////////////////////////
+// TEMPERARY until we load more quizes
+ .cookie-quiz1,
+ .cookie-quiz2,
+ .cookie-quiz3,
+ .cookie-quiz4 {
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
@@ -12,6 +30,9 @@
   width: 90%;
   background-color: #C8553D;
 }
+
+
+/////////////////////////////////////////////////////////////////////
 
 .cookie
 -quiz:hover {
