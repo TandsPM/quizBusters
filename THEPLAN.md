@@ -3,8 +3,8 @@
 * Group members: Tandra Malm @tmalm_ , Robin Fleur @saintsappho 
 * Chosen Project: Quiz App
 * What your team is working on today: planning!
-* What was a struggle yesterday: there was no yesterday O.O
-* Est Project Completion: 00 % * 
+* What was a struggle yesterday: coordination and direction. over the weekend we struggled a bit with organizing our excitement into workable tasks.
+* Est Project Completion: 15 % * 
 
 # THE GOAL:
 
