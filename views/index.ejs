@@ -13,8 +13,10 @@
     <%- include('partials/_header') %>
     <main class="container">
 
-  <!-- login button -->
-  <a href="/login/123">Login</a>
+      <form id="login" action="/login/123" method="GET">
+        <!-- <input type="hidden" name="id" value="123"> -->
+        <button type="submit">Login</button>
+      </form>
 
       <%- include('partials/_dashboard-content') %>
     </main>

@@ -56,16 +56,6 @@ app.use('/new-quiz', newQuizRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-// app.get('/login/:id', (req, res) => {
-//   const id = req.params.id;
-//   const user = getUserById (id);
-
-//   req.session.user = user;
-
-//   // redirect to logged in page
-//   res.redirect('/')
-// })
-
 app.get('/', (req, res) => {
   const user = req.session.user;
   if (user) {
@@ -78,20 +68,20 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  const user = {
-    id: '123',
-    username: '123'
-  }
-  req.session.user = user;
+  const id = req.query.id;
+  const user = getUserById(id);
 
-  res.redirect('/');
+  if (user) {
+    req.session.user = user;
+    res.redirect('/');
+  } else {
+    res.status(404).send('User not found');
+  }
 });
 
 app.post('/login', (req, res) => {
   res.redirect('/');
 })
-
-
 
 // Login with ID
 app.get('/login/:id', (req, res) => {
@@ -112,24 +102,4 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-// app.get('/login/:id', (req, res) => {
-//   const id = req.params.id;
-//   const user = getUserById (id);
-
-//   req.session.user = user;
-
-//   // redirect to logged in page
-//   res.redirect('/')
-// })
-
-// app.get('/', (req, res) => {
-//   const user = req.session.user;
-//   if (user) {
-//     const templateVars = { user: user, }
-
-//   res.render('index', templateVars);
-//   } else {
-//     res.redirect('/login');
-//   }
-// });
 
