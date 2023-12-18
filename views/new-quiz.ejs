@@ -7,6 +7,7 @@
 
   <!-- jquery plug -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="scripts/new-quiz.js"></script>
 
   <!-- css -->
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
@@ -15,111 +16,46 @@
   <!-- basic head -->
   <%- include('partials/_head', { pageTitle: 'New Quiz' }) %>
 
-    <!-- doc.ready-->
-    <script>
-      $(document).ready(function() {
-        var questionCounter = 1; // Start after the first question
-
-        $(document).on('click', '.add-option-btn', function(event) {
-          event.preventDefault(); // Prevent default form submit
-          var $optionsBox = $(this).siblings("div"); // Change to class of your question options
-          console.log("options box: ", $optionsBox);
-          var optionCounter = $optionsBox.find('.new-question-option').length + 1; // Count existing options
-
-          // Create a new option input
-          var newOptionHtml = `
-               <div class="new-question-option"><input type="text" name="option-${optionCounter}" value="option-${optionCounter}" /></div>
-`;
-          // Append the new option input to the correct question's options box
-          $optionsBox.append(newOptionHtml);
-        });
-        $('.add-question-btn').click(function() {
-          event.preventDefault();
-          // Increment the question counter for unique question-ids
-          questionCounter++;
-
-          // Create a new question form
-          var newQuestionHtml = `
-           <form>
-            <label for="new-question-form-${questionCounter}">Question ${questionCounter}:</label><br>
-              <input type="text" class="new-question-form-${questionCounter}" name="new-question-form-${questionCounter}" value="Whats up?" onkeyup="updateQuestion${questionCounter}()"><br>
-            </form>
-            <h4 class="new-question-${questionCounter}">What's up?</h4>
-            <div class="question-${questionCounter}-options">
-            <fieldset>
-              <div class="new-question-options-box">
-                <div class="new-question-option"><input type="text" name="option-1" value="option-1" /></div>
-                <div class="new-question-option"><input type="text" name="option-2" value="option-2" /></div>
-                <button class="add-option-btn">Add Another option</button>
-                </div>
-                </fieldset>
-                <br>
-                </div>`;
-
-          // Append the new question HTML to the "new-questions" section
-          $('.new-quiz-questions').append(newQuestionHtml);
-        });
-      });
-    </script>
+  
 </head>
 
 <body>
   <div id="new-quiz-container"></div>
+
   <!-- including the nav bar  -->
   <%- include('partials/_nav') %>
+
     <header>
+
       <div class="new-quiz-info">
 
-        <!-- title -->
         <form>
-          <label for="new-title-form">Title:</label><br>
-          <input type="text" id="new-title-form" name="new-title-form" value="My Quiz" onkeyup="updateQuizTitle()"><br>
-        </form>
-        <h1 id="new-quiz-title">My Quiz</h1>
-        <script>
-          function updateQuizTitle() {
-            var inputValue = document.getElementById("new-title-form").value;
-            // Update the content of the new-quiz-title h1 element
-            document.getElementById("new-quiz-title").innerText = inputValue;
-          }
-        </script>
+        <!-- title -->
+          <label for="new-title">Title:</label><br>
+          <input type="text" id="new-title" name="new-title" value="My Quiz"><br>
+          <h1 id="quiz-title">My Quiz</h1>
 
         <!-- author -->
-        <form>
-          <label for="new-author-form">Author:</label><br>
-          <input type="text" id="new-author-form" name="new-author-form" value="Jane Doe"
-            onkeyup="updateQuizauthor()"><br>
+          <label for="new-author">Author:</label><br>
+          <input type="text" id="new-author" name="new-author" value="Jane Doe"><br>
+          <h4 id="quiz-author">Jane Doe</h4>
+          
         </form>
-        <h4 id="new-quiz-author">Jane Doe</h4>
-        <script>
-          function updateQuizauthor() {
-            var inputValue = document.getElementById("new-author-form").value;
-            // Update the content of the new-quiz-autho h1 element
-            document.getElementById("new-quiz-author").innerText = inputValue;
-          }
-        </script>
+
       </div>
 
     </header>
 
     <main class="new-quiz-container">
+
       <form class="new-quiz-questions">
+
         <section class="new-question-1">
 
           <!-- dynamic question 1 form -->
-          <label for="new-question-form">Question 1:</label><br>
-          <input type="text" id="new-question-form" name="new-question-form" value="Whats up?"
-            onkeyup="updateQuestion1()"><br>
-
+          <label for="new-question">Question 1:</label><br>
+          <input type="text" id="new-question" name="new-question" value="Whats up?"><br>
           <h4 id="new-question-1">What's up?</h4> <!-- This Auto Populates from updateQuestion1-->
-
-          <script>
-            function updateQuestion1() { // NEED TO MAKE UPDATEQUESTION*
-              var inputValue = document.getElementById("new-question-form").value;
-              // Update the content of the new-question-1 h1 element
-              document.getElementById("new-question-1").innerText = inputValue;
-            }
-          </script>
 
           <!-- Questions -->
           <div class="question-1-options">
@@ -133,7 +69,7 @@
             <br>
           </div>
         </section>
-      </form> id
+      </form> 
       <br>
 
       <button class="add-question-btn">Add Another Question</button>
