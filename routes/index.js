@@ -14,7 +14,7 @@ router.get('/login/:id', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  res.send('/');
+  res.render('/');
 });
 
 module.exports = router;
