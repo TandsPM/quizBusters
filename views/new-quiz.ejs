@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/quizzes.css" type="text/css">
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css">
+  <title>New Quiz</title>
+  <%- include('partials/_head') %>
+</head>
+
+<body>
+  <!-- including the nav bar  -->
+  <%- include('partials/_nav') %>
+    <main class="new-quiz-container">
+      <div class="new-quiz-info">
+        <!-- title -->
+        <form>
+          <label for="newQtitle">Title:</label><br>
+          <input type="text" id="newQtitle" name="newQtitle" value="My Quiz" onkeydown="updateQuizTitle()"><br>
+        </form>
+        <h1 id="newQuizTitle">QUIZ TITLE</h1>
+        <script>
+          function updateQuizTitle() {
+            var inputValue = document.getElementById("newQtitle").value;
+            // Update the content of the newQuizTitle h1 element
+            document.getElementById("newQuizTitle").innerText = inputValue;
+          }
+        </script>
+
+        <!-- author -->
+        <form>
+          <label for="newQauthor">Author:</label><br>
+          <input type="text" id="newQauthor" name="newQauthor" value="Jane Doe" onkeydown="updateQuizauthor()"><br>
+        </form>
+        <h4 id="newQuizAuthor">Jane Doe</h4>
+        <script>
+          function updateQuizauthor() {
+            var inputValue = document.getElementById("newQauthor").value;
+            // Update the content of the quizauthor h1 element
+            document.getElementById("newQuizAuthor").innerText = inputValue;
+          }
+        </script>
+        
+      </div>
+
+      <section class="cookie-quiz1">
+        <label for="cookie-quiz" class="cookie-quiz-title">Question 1</label>
+        <br />
+        <div class="quiz-content-demo">
+          <div class="question">do you prefer rain or sun?</div>
+          <fieldset>
+            <div class="answer-options">
+              <div class="answer-option"><input type="radio" name="rain" value="rain" /> i like rain!</div>
+              <div class="answer-option"><input type="radio" name="sun" value="sun" /> i like sun!</div>
+              <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
+          </fieldset>
+        </div>
+      </section>
+
+
+
+      <div class="result-section">
+        <h3>Results</h3>
+        <p>Your Score: <span id="userScore">0</span></p>
+        <p>Total Correct Answers: <span id="totalCorrect">0</span></p>
+        <p>Total Questions: <span id="totalQuestions">4</span></p>
+      </div>
+
+
+      <!-- <time class="cookie-quiz-time">${ago}</time> -->
+      <div class="reactions">
+        <div class="reaction"><i class="fa-regular fa-flag"></i></div>
+        <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
+        <div class="reaction"><i class="fa-regular fa-heart"></i></div>
+      </div>
+      </section>
+
+    </main>
+
+</body>
+
+</html>

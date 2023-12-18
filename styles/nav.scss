@@ -1,3 +1,7 @@
+//////////////////////////////////////////////////////////////////////////////////////
+///     NAV BAR                                                                    ///
+//////////////////////////////////////////////////////////////////////////////////////
+
 nav {
   height: 100px;
   position: fixed;
@@ -23,7 +27,7 @@ nav {
 }
 
 #quizBusters {
-  font-family: 'Monofett', monospace;
+  font-family: 'Bungee Shade', sans-serif;
   font-size: 40px;
   color: whitesmoke;
   background-color: rgba(60, 64, 67, .3);
@@ -34,7 +38,11 @@ nav {
   margin-left: -70px;
 }
 
-// SEARCH BAR
+
+//////////////////////////////////////////////////////////////////////////////////////
+///     SEARCH BAR                                                                 ///
+//////////////////////////////////////////////////////////////////////////////////////
+
 .search-container {
   display: flex;
   align-items: center;
@@ -55,6 +63,21 @@ nav {
 .search-button:hover {
   background-color: rgba(60, 64, 67, .3);
 }
+
+//////////////////////////////////////////////////////////////////////////////////////
+///     COLLAPSING NAV                                                             ///
+//////////////////////////////////////////////////////////////////////////////////////
+
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #cccccc;
+  border-radius: 1px;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+///     NAV BUTTONS                                                                ///
+//////////////////////////////////////////////////////////////////////////////////////
 
 nav button {
   align-items: center;
@@ -114,6 +137,3 @@ nav button:disabled {
 }
 
 
-#quizBusters {
-  font-family: 'Bungee Shade', sans-serif;
-}

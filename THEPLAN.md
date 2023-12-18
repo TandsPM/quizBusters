@@ -2,9 +2,9 @@
 
 * Group members: Tandra Malm @tmalm_ , Robin Fleur @saintsappho 
 * Chosen Project: Quiz App
-* What your team is working on today: planning!
+* What your team is working on today: implementation of our quiz system from demo text to functional SELECTS from sql database.
 * What was a struggle yesterday: coordination and direction. over the weekend we struggled a bit with organizing our excitement into workable tasks.
-* Est Project Completion: 15 % * 
+* Est Project Completion: 20 % * 
 
 # THE GOAL:
 
