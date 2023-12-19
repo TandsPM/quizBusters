@@ -1,45 +1,6 @@
-// $(document).ready(function () {
-//   checkLoginStatus();
-
-//   $('#loginButton').on('click', function (event) {
-//     event.preventDefault();
-//     // Send request to server to handle login/out
-//     $.ajax({
-//       method: 'GET',
-//       url: '/login',
-//       success: function (data) {
-//         checkLoginStatus();
-//       },
-//       error: function (error) {
-//         console.log('Login/logout fail:', error);
-//       },
-//     });
-//   });
-
-//   function checkLoginStatus() {
-//     $.ajax({
-//       method: 'GET',
-//       url: '/checkLogin',
-//       success: function (data) {
-//         if (data.user) {
-//         // if logged in display these
-//         $('#user-info').html('Welcome, ' + data.user.username);
-//         $('#loginButton').text('Logout');
-//         $('#loginButton').attr('href', '/logout');
-//       } else {
-//         $('#user-info').html('');
-//         $('#loginButton').text('Login');
-//         $('#loginButton').attr('href', '/login');
-//       }
-//     },
-//     error: function (error) {
-//       console.log('Error:', error);
-//     },
-//   });
-// }
-// });
-
-// // my results
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      Login/Logout functionality                        ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 const express = require('express');
 const router = express.Router();
 
@@ -62,7 +23,7 @@ router.get('/', allowAccess, (req, res) => {
   res.render('dashboard', { user: user });
 });
 
-router.get('/', allowAccess, (req, res) => {
+router.get('/index', allowAccess, (req, res) => {
   res.render('index', { user_id: req.session.user || req.cookies.user_id });
 });
 
