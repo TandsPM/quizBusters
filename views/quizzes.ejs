@@ -9,7 +9,8 @@
 </head>
 <body>
   <!-- including the nav bar  -->
-  <%- include('partials/_nav') %>
+  <% const dashboardPage = false; %>
+  <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
   <main class="quiz-container">
     <div class="quiz-title">
       <h1>QUIZ TITLE</h1>
