@@ -146,7 +146,6 @@ const data = {
   optionsCountArray,
   optionsArray
 };
-console.log("data: ", data)
 return data;
 }
 

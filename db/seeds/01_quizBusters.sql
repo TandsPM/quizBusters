@@ -1,8 +1,9 @@
 -- Seed data for the 'users' table
 INSERT INTO users (name, email, password) VALUES
   ('John Doe', 'john.doe@example.com', 'password123'),
-  ('Jane Smith', 'jane.smith@example.com', 'securepass'),
-  ('Bob Johnson', 'bob.johnson@example.com', 'bobpassword');
+  ('Jane Smith', 'jane.smith@example.com', 'password'),
+  ('Bob Johnson', 'bob.johnson@example.com', 'bobpassword'),
+  ('Robin Fleur', 'example@example.com', 'password');
 
 -- Seed data for the 'quizzes' table
 INSERT INTO quizzes (owner_id, title, rating) VALUES
@@ -17,10 +18,10 @@ INSERT INTO quiz_submission (user_id, quiz_id, total, total_score) VALUES
   (3, 3, 8, 6);
 
 -- Seed data for the 'questions' table
-INSERT INTO questions (quiz_id, content, number) VALUES
-  (1, 'What is the capital of France?', 1),
-  (2, 'Who directed the movie "Inception"?', 1),
-  (3, 'What is the chemical symbol for gold?', 1);
+INSERT INTO questions (quiz_id, content, number_of_options) VALUES
+  (1, 'What is the capital of France?', 2),
+  (2, 'Who directed the movie "Inception"?', 2),
+  (3, 'What is the chemical symbol for gold?', 2);
 
 -- Seed data for the 'options' table
 INSERT INTO options (question_id, content, explanation, correct) VALUES

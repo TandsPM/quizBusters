@@ -25,10 +25,10 @@ app.set('view engine', 'ejs');
 ////////////////////////////////////////////////////////////////////////////////////////
 
 const quizzesRoutes = require('./routes/quizzes');
+const newQuizRoutes = require('./routes/newQuiz');
 const myResultsRoutes = require('./routes/my-results');
 const profileRoutes = require('./routes/profile');
 const favesRoutes = require('./routes/faves');
-const newQuizRoutes = require('./routes/newQuiz');
 const indexRoutes = require('./routes/index');
 const { getUserById } = require('./db/queries/users');
 
