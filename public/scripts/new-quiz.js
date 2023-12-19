@@ -108,29 +108,51 @@ const createQuestionElement = function() {
 ////                      SQL Functions                             ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-const collectData = function () {
+const collectData = function() {
   const quizTitle = $("#new-title").val();
   const quizAuthor = $("#new-author").val();
-  const questions = $(".new-quiz-questions").find(".individual-question")
-  
+  const questions = $(".new-quiz-questions").find(".individual-question");
 
-  const questionNamesArray = []
-  for (const question of questions){
-    const questionName = $(question).find(".question-input").val();
-    questionNamesArray.push(questionName)
-    const options = $("")
-  }
-  const data = {
-    quizTitle,
-    quizAuthor,
-    questionNamesArray,
-  }
-  console.log("data object: ", data)
-  return data;
+  const questionNamesArray = [];
+  const optionsCountArray = [];
+  const optionsArray = [];
+
+// get Question Info
+  questions.each(function() {
+
+    const questionElement = $(this);
+    const questionName = questionElement.find(".question-input").val();
+
+    questionNamesArray.push(questionName);
+
+// Get Options Info
+    const options = questionElement.find(".question-options").find(".new-question-options-box");
+    const indvOptions = options.find(".new-question-option");
+    let optionsCount = 0
+    indvOptions.each(function() {
+      optionsCount++
+      const optionElement = $(this);
+      const optionText = optionElement.find("input[type='text']").val();
+      const isCorrect = optionElement.find("input[type='radio'].correct").prop("checked");
+      optionsArray.push({ optionText, isCorrect }) 
+    });
+    optionsCountArray.push(optionsCount)
+  });
+
+const data = {
+  quizTitle,
+  quizAuthor,
+  questionNamesArray,
+  optionsCountArray,
+  optionsArray
+};
+console.log("data: ", data)
+return data;
 }
 
-const submitNewQuiz = function () {
-  collectData()
+
+const submitNewQuiz = function() {
+  collectData();
   // $.ajax({
   //   url:'/new-quiz', 
   //   method: "POST", 
@@ -142,4 +164,4 @@ const submitNewQuiz = function () {
   //     console.log("error", err)
   //   }
   // })
-}
+};
