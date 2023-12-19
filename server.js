@@ -42,6 +42,7 @@ const myResultsRoutes = require('./routes/my-results');
 const profileRoutes = require('./routes/profile');
 const favesRoutes = require('./routes/faves');
 const newQuizRoutes = require('./routes/newQuiz');
+const indexRoutes = require('./routes/index');
 const { getUserById } = require('./db/queries/users');
 
 // Mount all resource routes
@@ -52,6 +53,7 @@ app.use('/my-results', myResultsRoutes);
 app.use('/profile', profileRoutes);
 app.use('/faves', favesRoutes);
 app.use('/new-quiz', newQuizRoutes);
+app.use('/', indexRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -64,21 +66,21 @@ app.get('/', (req, res) => {
     res.render('index', templateVars);
 });
 
-app.get('/login', (req, res) => {
-  const id = req.query.id;
-  const user = getUserById(id);
+// app.get('/login', (req, res) => {
+//   const id = req.query.id;
+//   const user = getUserById(id);
 
-  if (user) {
-    req.session.user = user;
-    res.redirect('/');
-  } else {
-    res.status(404).send('User not found');
-  }
-});
+//   if (user) {
+//     req.session.user = user;
+//     res.redirect('/');
+//   } else {
+//     res.status(404).send('User not found');
+//   }
+// });
 
-app.post('/login', (req, res) => {
-  res.redirect('/');
-});
+// app.post('/login', (req, res) => {
+//   res.redirect('/');
+// });
 
 // Login with ID
 app.get('/login/:id', (req, res) => {
@@ -93,6 +95,40 @@ app.get('/login/:id', (req, res) => {
     // Handle invalid user ID
     res.status(404).send('User not found');
   }
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// Add a route for handling login form submission
+app.post('/login', (req, res) => {
+  const id = req.body.id;
+  const user = getUserById(id);
+
+  if (user) {
+    req.session.user = user;
+    res.redirect('/');
+  } else {
+    res.status(404).send('User not found');
+  }
+});
+
+// Middleware to check if user is authenticated
+const isAuthenticated = (req, res, next) => {
+  if (req.session.user || req.cookies.user_id) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+};
+
+// Home page
+app.get('/', isAuthenticated, (req, res) => {
+  const user = req.session.user;
+
+  const templateVars = { user: user };
+  res.render('index', templateVars);
 });
 
 // Endpoint to check login status
