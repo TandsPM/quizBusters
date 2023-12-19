@@ -14,6 +14,7 @@ $(document).ready(function() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ////                      Info Functions                             ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+let questionNumber = 1;
 
 const updateQuizTitle = function() {
   const inputValue = $(this).val();
@@ -44,7 +45,9 @@ const addOption = function(event) {
   // Create a new option input
   const newOptionHtml = `
   <div class="new-question-option">
-  <input type="text" name="option" value="[option]" />
+    <input type="text" name="option" value="[colour]" />
+    <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
+    <br>
   </div>
   `;
   // Append the new option input to the correct question's options box
@@ -64,6 +67,7 @@ const updateQuestion = function() {
 };
 
 const addQuestion = function() {
+  questionNumber++
   event.preventDefault();
   const element = createQuestionElement();
   // Append the new question HTML to the "new-questions" section
@@ -79,8 +83,14 @@ const createQuestionElement = function() {
     <div class="question-options">
       <fieldset>
         <div class="new-question-options-box"> <!-- add new options to here-->
-          <div class="new-question-option"><input type="text" name="option" value="Blue" /></div>
-          <div class="new-question-option"><input type="text" name="option" value="Green" /></div>
+          <div class="new-question-option"><input type="text" name="option" value="Blue" />
+            <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
+            <br>
+          </div>
+          <div class="new-question-option"><input type="text" name="option" value="Green" />
+            <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
+            <br>
+          </div>
         </div>
         <button type="button" class="add-option-btn">Add Another Option</button>
       </fieldset>
