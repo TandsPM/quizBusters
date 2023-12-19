@@ -1,14 +1,19 @@
+// const { application } = require("express");
+// const { get } = require("../../routes/newQuiz");
+
 $(document).ready(function() {
 
   $(document).on('click', '.add-option-btn', addOption);
 
   $('.add-question-btn').on("click", addQuestion);
-  
+
   $("#new-title").on("input", updateQuizTitle);
-  
+
   $("#new-author").on("input", updateQuizAuthor);
-  
+
   $(".new-quiz-container").on("input", ".question-input", updateQuestion);
+
+  $("#submitButton").on("click", submitNewQuiz);
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,8 +24,6 @@ let questionNumber = 1;
 const updateQuizTitle = function() {
   const inputValue = $(this).val();
   const title = $("#quiz-title");
-  console.log("quiz-title ", title);
-  console.log("inputValue ", inputValue);
   // Update the content of the new-quiz-title h1 element
   title.text(inputValue);
 };
@@ -39,15 +42,15 @@ const updateQuizAuthor = function() {
 const addOption = function(event) {
   event.preventDefault(); // Prevent default form submit
   const optionsBox = $(this).siblings("div").last(); // Change class to this question's options box
-  
+
   console.log("optionsBox.find", optionsBox.find('.new-question-option'));
-  
+
   // Create a new option input
   const newOptionHtml = `
   <div class="new-question-option">
     <input type="text" name="option" value="[colour]" />
     <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
-    <br>
+    <br>
   </div>
   `;
   // Append the new option input to the correct question's options box
@@ -67,7 +70,7 @@ const updateQuestion = function() {
 };
 
 const addQuestion = function() {
-  questionNumber++
+  questionNumber++;
   event.preventDefault();
   const element = createQuestionElement();
   // Append the new question HTML to the "new-questions" section
@@ -85,11 +88,11 @@ const createQuestionElement = function() {
         <div class="new-question-options-box"> <!-- add new options to here-->
           <div class="new-question-option"><input type="text" name="option" value="Blue" />
             <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
-            <br>
+            <br>
           </div>
           <div class="new-question-option"><input type="text" name="option" value="Green" />
             <input type="radio" class="correct" name="Q${questionNumber}" value="correct">
-            <br>
+            <br>
           </div>
         </div>
         <button type="button" class="add-option-btn">Add Another Option</button>
@@ -99,3 +102,44 @@ const createQuestionElement = function() {
   <br>`;
   return $(newQuestionHtml);
 };
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      SQL Functions                             ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+const collectData = function () {
+  const quizTitle = $("#new-title").val();
+  const quizAuthor = $("#new-author").val();
+  const questions = $(".new-quiz-questions").find(".individual-question")
+  
+
+  const questionNamesArray = []
+  for (const question of questions){
+    const questionName = $(question).find(".question-input").val();
+    questionNamesArray.push(questionName)
+    const options = $("")
+  }
+  const data = {
+    quizTitle,
+    quizAuthor,
+    questionNamesArray,
+  }
+  console.log("data object: ", data)
+  return data;
+}
+
+const submitNewQuiz = function () {
+  collectData()
+  // $.ajax({
+  //   url:'/new-quiz', 
+  //   method: "POST", 
+  //   data:  collectData(), // object from collect data
+  //   success: function(data) {
+  //     console.log("hello world", data)
+  //   },
+  //   error: function(err) {
+  //     console.log("error", err)
+  //   }
+  // })
+}
