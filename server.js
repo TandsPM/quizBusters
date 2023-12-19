@@ -138,6 +138,12 @@ app.get('/index', isAuthenticated, (req, res) => {
   res.render('index', templateVars);
 });
 
+app.get('/dashboard', isAuthenticated, (req, res) => {
+  const user = req.session.user;
+  const templateVars = { user: user };
+  res.render('dashboard', templateVars);
+})
+
 // Endpoint to check login status
 app.get('/checkLogin', (req, res) => {
   const user = req.session.user;
