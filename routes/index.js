@@ -44,7 +44,7 @@ const express = require('express');
 const router = express.Router();
 
 const allowAccess = (req, res, next) => {
-  if (req.session && (req.session.user || req.cookies.user)) {
+  if (req.session && (req.session.user || req.cookies.user_id)) {
     next();
   } else {
     res.redirect('/login');
@@ -58,7 +58,17 @@ router.get('/login/:id', (req, res) => {
 });
 
 router.get('/', allowAccess, (req, res) => {
-  res.render('index', { user_id: req.session.user || req.cookies.user });
+  const user = req.session.user || req.cookies.user_id;
+  res.render('dashboard', { user: user });
+});
+
+router.get('/', allowAccess, (req, res) => {
+  res.render('index', { user_id: req.session.user || req.cookies.user_id });
+});
+
+router.get('/checkLogin', (req, res) => {
+  const user = req.session.user;
+  res.json({ user });
 });
 
 module.exports = router;

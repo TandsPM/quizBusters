@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/_head', { pageTitle: 'Dashboard' }) %>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="/scripts/dashboard.js"></script>
+</head>
+<body>
+  <%- include('partials/_nav') %>
+  <section id="page-content">
+    <%- include('partials/_header') %>
+    <main class="container">
+      <% if (user) { %>
+      <h2>Welcome to the Dashboard, <%= user.username %></h2>
+
+      <a href="/quizzes" class="btn btn-primary">Quizzes Page</a>
+      <button id="loginButton" class="btn btn-primary">Login</button>
+      <% } else { %>
+      <p>Please login to access more</p>
+    <% } %>
+
+    </main>
+  </section>
+
+</body>
+</html>

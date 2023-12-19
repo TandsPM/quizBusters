@@ -59,28 +59,6 @@ app.use('/', indexRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get('/', (req, res) => {
-  const user = req.session.user;
-
-    const templateVars = { user: user };
-    res.render('index', templateVars);
-});
-
-// app.get('/login', (req, res) => {
-//   const id = req.query.id;
-//   const user = getUserById(id);
-
-//   if (user) {
-//     req.session.user = user;
-//     res.redirect('/');
-//   } else {
-//     res.status(404).send('User not found');
-//   }
-// });
-
-// app.post('/login', (req, res) => {
-//   res.redirect('/');
-// });
 
 // Login with ID
 app.get('/login/:id', (req, res) => {
@@ -98,7 +76,11 @@ app.get('/login/:id', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
+  if (req.session.user || req.cookies.user_id) {
+    res.redirect('/');
+  } else {
   res.render('login');
+  }
 });
 
 // Add a route for handling login form submission
@@ -108,7 +90,9 @@ app.post('/login', (req, res) => {
 
   if (user) {
     req.session.user = user;
-    res.redirect('/');
+    const redirect = req.query.redirect || '/';
+
+    res.redirect(redirect);
   } else {
     res.status(404).send('User not found');
   }
@@ -122,6 +106,17 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/login');
   }
 };
+
+app.get(['/', '/index'], isAuthenticated, (req, res) => {
+  const user = req.session.user;
+  const templateVars = { user: user};
+
+  res.render('index', templateVars);
+});
+
+app.get('/quizzes', isAuthenticated, (req, res) => {
+  res.render('quizzes', { user: req.session.user || req.cookies.user_id });
+});
 
 // Home page
 app.get('/', isAuthenticated, (req, res) => {
