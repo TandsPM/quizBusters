@@ -152,15 +152,11 @@ return data;
 
 
 const submitNewQuiz = function() {
-  $.ajax({
-    url:'/new-quiz', 
-    method: "POST", 
-    data:  collectData(), // object from collect data
-    success: function(data) {
-      console.log("hello world", data)
-    },
-    error: function(err) {
-      console.log("error", err)
-    }
-  })
+  $.post('/new-quiz', collectData())
+    .then(function(data) {
+      console.log("Data Received", data);
+    })
+    .catch(function(err) {
+      console.log("Error", err);
+    });
 };

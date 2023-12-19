@@ -27,13 +27,13 @@ INSERT INTO questions (quiz_id, content, number) VALUES
   -- Add more questions as needed
 
 -- Seed data for the 'options' table
-INSERT INTO options (question_id, content, explanation, score) VALUES
-  (1, 'Paris', 'Correct answer!', 1),
-  (1, 'Berlin', 'Incorrect answer', 0),
-  (2, 'Christopher Nolan', 'Correct answer!', 1),
-  (2, 'Steven Spielberg', 'Incorrect answer', 0),
-  (3, 'Au', 'Incorrect answer', 0),
-  (3, 'Ag', 'Correct answer!', 1);
+INSERT INTO options (question_id, content, explanation, correct) VALUES
+  (1, 'Paris', 'Correct answer!', true),
+  (1, 'Berlin', 'Incorrect answer', false),
+  (2, 'Christopher Nolan', 'Correct answer!', true),
+  (2, 'Steven Spielberg', 'Incorrect answer', false),
+  (3, 'Au', 'Incorrect answer', false),
+  (3, 'Ag', 'Correct answer!', true);
   -- Add more options as needed
 
 -- Seed data for the 'answers' table

@@ -38,7 +38,7 @@ CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
   quiz_id INTEGER REFERENCES quizzes(id) NOT NULL,
   content TEXT,
-  number INT
+  number_of_options INT
 );
 
 -- recreate options table 
@@ -47,7 +47,7 @@ CREATE TABLE options (
   question_id INTEGER REFERENCES questions(id),
   content TEXT,
   explanation TEXT,
-  score SMALLINT DEFAULT 0
+  correct BOOLEAN
 );
 
 -- recreate answers table 
@@ -59,9 +59,3 @@ CREATE TABLE answers (
   value INTEGER DEFAULT 0
 );
 
--- recreate Widgets table (???)
--- CREATE TABLE widgets (
---   id SERIAL PRIMARY KEY NOT NULL,
---   user_id INTEGER REFERENCES users(id),
---   name VARCHAR(255) NOT NULL
--- );
