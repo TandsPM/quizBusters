@@ -24,11 +24,9 @@
 
   <!-- including the nav bar  -->
   <%- include('partials/_nav') %>
-
+  <form action="/post/new-quiz">
     <header>
-
       <div class="new-quiz-info">
-
 
         <!-- title -->
         <label for="new-title">Title:</label><br>
@@ -40,22 +38,19 @@
         <input type="text" id="new-author" name="new-author" value="Jane Doe"><br>
         <h4 id="quiz-author">Jane Doe</h4>
 
-
-
       </div>
-
+      
     </header>
 
     <main class="new-quiz-container">
-      <section class="new-quiz-questions">
-        
-      </section>
-    <div class="button-box">
+      
+      <section class="new-quiz-questions"></section> <!--questions populate in here-->
+
       <button class="add-question-btn">Add a Question</button>
-      <br>
-      <button class="save-quiz-btn">Save</button> <!-- MUST PUSH TO SQL WITHOUT REFRESHING -->
-    </div>
+
     </main>
+    <input type="submit" value="Submit"> <!--need to post to submit all added content to correct tables-->
+  </form>
 </body>
 
 </html>
