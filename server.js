@@ -107,7 +107,7 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-app.get(['/', '/index'], isAuthenticated, (req, res) => {
+app.get('/index', isAuthenticated, (req, res) => {
   const user = req.session.user;
   const templateVars = { user: user};
 
@@ -119,7 +119,7 @@ app.get('/quizzes', isAuthenticated, (req, res) => {
 });
 
 // Home page
-app.get('/', isAuthenticated, (req, res) => {
+app.get('/index', isAuthenticated, (req, res) => {
   const user = req.session.user;
 
   const templateVars = { user: user };
