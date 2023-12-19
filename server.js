@@ -88,7 +88,7 @@ app.get('/login/:id', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  if (req.session.user || req.cookies.user_id) {
+  if (req.session.user) {
     res.redirect('/');
   } else {
   res.render('login');
@@ -112,7 +112,7 @@ app.post('/login', (req, res) => {
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
-  if (req.session.user || req.cookies.user_id) {
+  if (req.session.user) {
     next();
   } else {
     res.redirect('/login');
@@ -127,7 +127,7 @@ app.get('/index', isAuthenticated, (req, res) => {
 });
 
 app.get('/quizzes', isAuthenticated, (req, res) => {
-  res.render('quizzes', { user: req.session.user || req.cookies.user_id });
+  res.render('quizzes', { user: req.session.user });
 });
 
 // Home page
