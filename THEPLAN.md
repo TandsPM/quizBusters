@@ -2,9 +2,9 @@
 
 * Group members: Tandra Malm @tmalm_ , Robin Fleur @saintsappho 
 * Chosen Project: Quiz App
-* What your team is working on today: implementation of our quiz system from demo text to functional SELECTS from sql database.
-* What was a struggle yesterday: coordination and direction. over the weekend we struggled a bit with organizing our excitement into workable tasks.
-* Est Project Completion: 20 % * 
+* What your team is working on today: backend database integration and login cookie functionality.
+* What was a struggle yesterday: running into the wall, and getting stuck in unhelpful mental states.
+* Est Project Completion: 45 % 
 
 # THE GOAL:
 
@@ -41,8 +41,8 @@
 
 ### MVD Features 
 * Registered users can create quizzes
-  * constructive forms for creating quizzes
-  * multiple choice forms and text forms available
+  * constructive forms for creating quizzes (IN PROGRESS)
+  * multiple choice forms and text forms available (COMPLETE)
   * privacy: users can make their quiz unlisted (url can be visited)
 
 * all users can attempt a quiz
