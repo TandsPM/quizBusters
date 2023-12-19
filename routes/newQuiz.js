@@ -38,8 +38,7 @@ router.post('/', (req, res) => {
     RETURNING *;`;  //   BUILD HERE
   const values = [owner_id, title, rating];
 
-  console.log(query);
-  db.query(query)
+  db.query(query, values)
     .then(data => {
       console.log ("data: ", data)
       const newQuiz = {data};
@@ -58,9 +57,3 @@ router.post('/', (req, res) => {
 
 module.exports = router;
 
-// CREATE TABLE quizzes (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   owner_id INTEGER REFERENCES users(id),
-//   title VARCHAR(255) NOT NULL,
-//   rating SMALLINT DEFAULT 0
-// );
