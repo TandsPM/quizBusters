@@ -7,7 +7,8 @@
 </head>
 
 <body>
-  <%- include('partials/_nav') %>
+  <% const isDashboardPage = false; %>
+  <%- include('partials/_nav', { isDashboardPage: isDashboardPage }) %>
   <section id="page-content">
     <%- include('partials/_header') %>
     <main class="container">

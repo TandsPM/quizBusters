@@ -8,7 +8,8 @@
 </head>
 <body>
   <!-- including the nav bar  -->
-  <%- include('partials/_nav') %>
+  <% const isDashboardPage = false; %>
+  <%- include('partials/_nav', { isDashboardPage: isDashboardPage }) %>
   <%- include('partials/_header') %>
   <main class="container">
     <h2>hello user</h2>

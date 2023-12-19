@@ -12,7 +12,8 @@
 
 <body>
   <!-- Top nav bar moved to partial (fixed) -->
-  <%- include('partials/_nav') %>
+  <% const isDashboardPage = false; %>
+  <%- include('partials/_nav', { isDashboardPage: isDashboardPage }) %>
   <!-- Page-specific (main) content here -->
   <section id="page-content">
     <%- include('partials/_header') %>
