@@ -7,6 +7,7 @@ const express = require('express');
 
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -58,13 +59,9 @@ app.use('/new-quiz', newQuizRoutes);
 // Separate them into separate routes files (see above).
 app.get('/', (req, res) => {
   const user = req.session.user;
-  if (user) {
+
     const templateVars = { user: user };
     res.render('index', templateVars);
-  } else {
-    res.redirect('/login');
-  }
-  // res.render('index');
 });
 
 app.get('/login', (req, res) => {
@@ -81,7 +78,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   res.redirect('/');
-})
+});
 
 // Login with ID
 app.get('/login/:id', (req, res) => {
@@ -98,8 +95,12 @@ app.get('/login/:id', (req, res) => {
   }
 });
 
+// Endpoint to check login status
+app.get('/checkLogin', (req, res) => {
+  const user = req.session.user;
+  res.json({ user });
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-
-

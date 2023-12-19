@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/_head', { pageTitle: 'Welcome' }) %>
+</head>
+<body>
+  <%- include('partials/_nav-no-user') %>
+
+  <section id="page-content">
+    <%- include('partials/_header') %>
+    <main class="container">
+      <h1>quizBusters</h1>
+      <form id="login" action="/login" method="GET">
+        <button type="submit">Login</button>
+      </form>
+    </main>
+  </section>
+
+</body>
+</html>
