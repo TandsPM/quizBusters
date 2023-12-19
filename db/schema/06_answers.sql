@@ -2,7 +2,6 @@
 
 DROP TABLE IF EXISTS answers CASCADE;
 
-
 -- recreate answers table 
 CREATE TABLE answers (
   id SERIAL PRIMARY KEY NOT NULL,
