@@ -7,7 +7,7 @@ const express = require('express');
 
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-const path = require('path');
+// const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
