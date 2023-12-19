@@ -19,6 +19,8 @@ router.post('/', (req, res) => {
   // QUIZZES
   .then((user) => {
     const { quizTitle, quizAuthor, questions } = req.body;
+    console.log("req: ", req)
+    console.log("req.body: ", req.body)
     
     return user.query(
       `INSERT INTO quizzes(owner_id, title) VALUES($1, $2) RETURNING id`,
