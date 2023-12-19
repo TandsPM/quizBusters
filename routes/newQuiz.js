@@ -1,69 +1,60 @@
-// Quizzes
+// new quiz
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     Imports and mounting                                                  ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 const express = require('express');
-const router = express.Router();
-const { Pool } = require('pg');
-const pool = new Pool({
-  user: 'labber',
-  host: 'localhost',
-  database: 'midterm',
-  password: '123',
-  port: 5432,
-});
+const router  = express.Router();
+const db = require('../db/connection');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      Render The Site                                                      ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/', (req, res) => {
   res.render('new-quiz');
 });
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      SQL Post?                                                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.post('/', (req, res) => {
-  return pool.connect()
-  // QUIZZES
-  .then((user) => {
-    const { quizTitle, quizAuthor, questions } = req.body;
-    
-    return user.query(
-      `INSERT INTO quizzes(owner_id, title) VALUES($1, $2) RETURNING id`,
-      [userId, quizTitle]
-    )
-  })
+  const owner_id = req.session.user_id; // Assuming you have the user information in the session
+  const body = req.body; // Replace with the actual title you want to insert
+  const title = req.body.quizTitle;
+  const author = req.body.quizAuthor;
+  console.log("owner_id: ", owner_id);
+  console.log("title: ", title);
+  console.log("author: ", author);
+  const rating = 0;
 
-  // // QUESTIONS
-  // .then((user) => {
-  //   const { quizTitle, quizAuthor, questions } = req.body;
-  //   return user.query(
-  //     `INSERT INTO questions(
-  //       quizzes.id as quiz_id, 
-  //       content, 
-  //       number_of_options)`
-  //   )
-  // })
+  const query = `
+    INSERT INTO quizzes (owner_id, title, rating)
+    VALUES ($1, $2, $3)
+    RETURNING *;`;  //   BUILD HERE
+  const values = [owner_id, title, rating];
 
-  // // OPTIONS
-  // .then((user) => { 
-  //   const { quizTitle, quizAuthor, questions } = req.body;
-  //   return user.query(
-  //     `INSERT INTO options (owner_id, title) `
-  //   )
-  // })
-
-  // RELEASE
-  .then(() => {
-    // Release the database connection
-    user.release(); 
-    res.json({
-      success: true,
-      message: 'Data successfully inserted into the database.',
+  console.log(query);
+  db.query(query)
+    .then(data => {
+      console.log ("data: ", data)
+      const newQuiz = {data};
+      res.send(newQuiz); // the object being sent back to script
+    })
+    .then(() => {
+      window.location = "http://localhost:8080/"; // the path for the "redirect"
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+        window.location = "http://localhost:8080/new-quiz";
     });
-
-  // ERROR HANDLING
-  // .catch((error) => {
-  //   console.error('Error connecting to the database:', error);
-  //   res.status(500).json({
-  //     success: false,
-  //     message: 'An error occurred while connecting to the database.',
-  //   });
-  // });
-  })
-})
+});
 
 module.exports = router;
 
@@ -72,20 +63,4 @@ module.exports = router;
 //   owner_id INTEGER REFERENCES users(id),
 //   title VARCHAR(255) NOT NULL,
 //   rating SMALLINT DEFAULT 0
-// );
-// -- recreate questions table 
-// CREATE TABLE questions (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   quiz_id INTEGER REFERENCES quizzes(id) NOT NULL,
-//   content TEXT,
-//   number_of_options INT
-// );
-
-// -- recreate options table 
-// CREATE TABLE options (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   question_id INTEGER REFERENCES questions(id),
-//   content TEXT,
-//   explanation TEXT,
-//   score SMALLINT DEFAULT 0
 // );
