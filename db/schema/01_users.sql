@@ -1,7 +1,5 @@
 -- Drop tables if they exist 
-
 DROP TABLE IF EXISTS users CASCADE;
-
 
 -- recreate quizzes table 
 CREATE TABLE users (
