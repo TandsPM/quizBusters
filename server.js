@@ -13,12 +13,7 @@ const express = require('express');
 
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-<<<<<<< HEAD
-const path = require('path');
-const chalk = require('chalk')
-=======
 // const path = require('path');
->>>>>>> 03fa66628ff51de0af07028ee27298c2b354469d
 
 const PORT = process.env.PORT || 8080;
 const app = express();
