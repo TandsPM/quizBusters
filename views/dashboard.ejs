@@ -13,7 +13,7 @@
       <% if (user) { %>
       <h2>Welcome to the Dashboard, <%= user.username %></h2>
 
-      <a href="/quizzes" class="btn btn-primary">Quizzes Page</a>
+      <a id="quizzesLink" href="#" class="btn btn-primary">Quizzes Page</a>
       <button id="loginButton" class="btn btn-primary">Login</button>
       <% } else { %>
       <p>Please login to access more</p>
