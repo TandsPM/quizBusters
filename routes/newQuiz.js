@@ -31,8 +31,6 @@ router.post('/', (req, res) => {
   const author = body.quizAuthor;
 
   console.log("owner_id: ", owner_id);
-  console.log("title: ", title);
-  console.log("author: ", author);
   const rating = 0;
 
   const query = `

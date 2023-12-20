@@ -3,11 +3,21 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 const express = require('express');
 const router = express.Router();
-
+const cookieSession = require('cookie-session');
+const db = require('../db/connection');
 const { getUserById } = require('../db/queries/users');
 
+router.use(cookieSession({
+  secret: 'your-secret-key',
+  resave: true,
+  initialSession: true,
+}));
+
+//////////////////////////////////////////////////////////////////////
+//// Check if Logged in                                           ////
+//////////////////////////////////////////////////////////////////////
 const allowAccess = (req, res, next) => {
-  if (req.session && (req.session.user)) {
+  if (req.session.user) {
     next();
   } else {
     res.redirect('/login');
@@ -20,12 +30,17 @@ const quizzes = [
 ];
 
 router.get('/login/:id', (req, res) => {
-  req.session.user_id = req.params.id;
+  
+  req.session.user_id = req.body.id;
   res.redirect('/');
 });
 
+//////////////////////////////////////////////////////////////////////
+//// render login page                                            ////
+//////////////////////////////////////////////////////////////////////
 router.get('/', allowAccess, (req, res) => {
-  const user = req.body.user;
+  
+  const user = req.session.user;
   res.render('dashboard', { user: user });
 });
 
@@ -64,7 +79,7 @@ router.post('/login', (req, res) => {
   const user = getUserById(id);
 
   if (user) {
-    req.session.user = user;
+    req.body.user = user;
     const redirect = req.query.redirect || '/';
 
     res.redirect(redirect);
@@ -73,14 +88,18 @@ router.post('/login', (req, res) => {
   }
 });
 
-// Endpoint to check login status
+
+//////////////////////////////////////////////////////////////////////
+//// Endpoint to check login status                               ////
+//////////////////////////////////////////////////////////////////////
+
 router.get('/checkLogin', (req, res) => {
-  const user = req.session.user;
+  
+  console.log("req.session3: ", req.session);
+  const user = req.body.user;
   res.json({ user });
 });
 
-
-
-
-
 module.exports = router;
+
+

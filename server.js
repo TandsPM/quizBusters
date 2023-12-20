@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
-
+const db = require('./db/connection');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
 // const path = require('path');
@@ -20,25 +20,9 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-////////////////////////////////////////////////////////////////////////////////////////
-////                 Creating Const Routes for each Resource                        ////
-////////////////////////////////////////////////////////////////////////////////////////
-
-const quizzesRoutes = require('./routes/quizzes');
-const newQuizRoutes = require('./routes/newQuiz');
-const myResultsRoutes = require('./routes/my-results');
-const profileRoutes = require('./routes/profile');
-const favesRoutes = require('./routes/faves');
-const indexRoutes = require('./routes/index');
-const { getUserById } = require('./db/queries/users');
-
-
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(cookieSession({
   secret: 'your-secret-key',
-  resave: false,
+  resave: true,
   initialSession: true,
 }));
 
@@ -54,15 +38,32 @@ app.use(
 );
 app.use(express.static('public'));
 
+////////////////////////////////////////////////////////////////////////////////////////
+////                 Creating Const Routes for each Resource                        ////
+////////////////////////////////////////////////////////////////////////////////////////
+
+const quizzesRoutes = require('./routes/quizzes');
+const newQuizRoutes = require('./routes/newQuiz');
+const myResultsRoutes = require('./routes/myResults');
+const profileRoutes = require('./routes/profile');
+const favesRoutes = require('./routes/faves');
+const indexRoutes = require('./routes/index');
+const { getUserById } = require('./db/queries/users');
+
+
+// Load the logger first so all (static) HTTP requests are logged to STDOUT
+// 'dev' = Concise output colored by response status for development use.
+//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
+
 
 ////////////////////////////////////////////////////////////////////////////////////////
-////                    Separated Routes for each Resource                          ////
+////           mounting Separated Routes for each Resource                          ////
 ////////////////////////////////////////////////////////////////////////////////////////
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-
+db.connect();
 app.use('/quizzes', quizzesRoutes);
-app.use('/my-results', myResultsRoutes);
+app.use('/myResults', myResultsRoutes);
 app.use('/profile', profileRoutes);
 app.use('/faves', favesRoutes);
 app.use('/new-quiz', newQuizRoutes);
@@ -81,6 +82,7 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/login');
   }
 };
+
 
 app.get('/index', isAuthenticated, (req, res) => {
   const user = req.session.user;
@@ -101,11 +103,6 @@ app.get('/index', isAuthenticated, (req, res) => {
   res.render('index', templateVars);
 });
 
-app.get('/dashboard', isAuthenticated, (req, res) => {
-  const user = req.session.user;
-  const templateVars = { user: user };
-  res.render('dashboard', templateVars);
-})
 
 
 app.listen(PORT, () => {
