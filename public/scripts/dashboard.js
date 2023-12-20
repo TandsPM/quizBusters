@@ -4,7 +4,14 @@ $(document).ready(function () {
   // handling login button
   $('#loginButton').on('click', function (event) {
     event.preventDefault();
-    window.location.href = '/index';
+        // Check if the user is logged in
+        if ($('#loginButton').text() === 'Logout') {
+          // If logged in, redirect to the dashboard
+          window.location.href = '/dashboard';
+        } else {
+          // If not logged in, redirect to the index page
+          window.location.href = '/index';
+        }
   });
 // });
 
@@ -17,12 +24,13 @@ function loginStatus() {
       if (data.user) {
         $('#quizzesLink').attr('href', '/quizzes');
         $('#quizzesLink').show();
-
+        $('#loginButton').text('Logout');
       } else {
-        $('#loginButton').on('click', function (event) {
-          event.preventDefault();
-          window.location.href = '/login';
-        });
+        $('#loginButton').text('Login');
+        // .on('click', function (event) {
+        //   event.preventDefault();
+        //   window.location.href = '/login';
+        // });
       }
     },
     error: function (error) {

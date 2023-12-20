@@ -62,7 +62,7 @@ const indexRoutes = require('./routes/index');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 db.connect();
 app.use('/quizzes', quizzesRoutes);
-app.use('/myResults', myResultsRoutes);
+app.use('/my-results', myResultsRoutes);
 app.use('/profile', profileRoutes);
 app.use('/faves', favesRoutes);
 app.use('/new-quiz', newQuizRoutes);
