@@ -25,8 +25,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const owner_id = req.session.user_id; // Assuming you have the user information in the session
   const body = req.body; // Replace with the actual title you want to insert
-  const title = req.body.quizTitle;
-  const author = req.body.quizAuthor;
+  const title = body.quizTitle;
+  const author = body.quizAuthor;
+  console.log("req.session: ", req.session);
   console.log("owner_id: ", owner_id);
   console.log("title: ", title);
   console.log("author: ", author);
@@ -40,7 +41,6 @@ router.post('/', (req, res) => {
 
   db.query(query, values)
     .then(data => {
-      console.log ("data: ", data)
       const newQuiz = {data};
       res.send(newQuiz); // the object being sent back to script
     })
