@@ -40,10 +40,10 @@
 # THE PLAN:
 
 ### MVD Features 
-* Registered users can create quizzes
-  * constructive forms for creating quizzes (IN PROGRESS)
+* Registered users can create quizzes (COMPLETE)
+  * constructive forms for creating quizzes (COMPLETE)
   * multiple choice forms and text forms available (COMPLETE)
-  * privacy: users can make their quiz unlisted (url can be visited)
+  * privacy: users can make their quiz unlisted (url can be visited) 
 
 * all users can attempt a quiz
   * users can see the results of their recent attempt
