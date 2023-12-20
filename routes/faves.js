@@ -1,9 +1,9 @@
-// my results
-const express = require('express');
-const router = express.Router();
+// // my results
+// const express = require('express');
+// const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('profile');
-});
+// router.get('/', (req, res) => {
+//   res.render('profile');
+// });
 
-module.exports = router;
+// module.exports = router;

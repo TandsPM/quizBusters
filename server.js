@@ -44,9 +44,7 @@ app.use(express.static('public'));
 
 const quizzesRoutes = require('./routes/quizzes');
 const newQuizRoutes = require('./routes/newQuiz');
-const myResultsRoutes = require('./routes/myResults');
 const profileRoutes = require('./routes/profile');
-const favesRoutes = require('./routes/faves');
 const indexRoutes = require('./routes/index');
 
 
@@ -62,9 +60,7 @@ const indexRoutes = require('./routes/index');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 db.connect();
 app.use('/quizzes', quizzesRoutes);
-app.use('/my-results', myResultsRoutes);
 app.use('/profile', profileRoutes);
-app.use('/faves', favesRoutes);
 app.use('/new-quiz', newQuizRoutes);
 app.use('/', indexRoutes);
 
