@@ -83,9 +83,9 @@ app.get('/index', isAuthenticated, (req, res) => {
   res.render('index', templateVars);
 });
 
-app.get('/quizzes', isAuthenticated, (req, res) => {
-  res.render('quizzes', { user: req.session.user });
-});
+// app.get('/quizzes', isAuthenticated, (req, res) => {
+//   res.render('quizzes', { user: req.session.user });
+// });
 
 // Home page
 app.get('/index', isAuthenticated, (req, res) => {
