@@ -25,37 +25,78 @@ router.get('/', (req, res) => {
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.post('/', (req, res) => {
-  const owner_id = req.session.user_id; // Assuming you have the user information in the session
-  const body = req.body; // Replace with the actual title you want to insert
+  const owner_id = req.session.user_id;
+  const body = req.body;
   const title = body.quizTitle;
-  const author = body.quizAuthor;
 
-  console.log("req.session: ", req.session);
-  console.log("req.body: ", req.body);
-  console.log("owner_id: ", owner_id);
-  const rating = 0;
+  // Start building the dynamic query
+  let query = `
+    WITH new_quiz AS (
+      INSERT INTO quizzes (owner_id, title, rating)
+      VALUES ($1, $2, $3)
+      RETURNING *
+    )
+  `;
 
-  const query = `
-    INSERT INTO quizzes (owner_id, title, rating)
-    VALUES ($1, $2, $3)
-    RETURNING *;`;  //   BUILD HERE
-  const values = [owner_id, title, rating];
+  const values = [
+    owner_id,
+    title,
+    0, // rating
+  ];
 
+  // Iterate over questions and options to dynamically build the query
+  for (let i = 0; i < body.questionNamesArray.length; i++) {
+    const questionContent = body.questionNamesArray[i];
+    const numberOfOptions = body.optionsCountArray[i];
+
+    // Insert into questions table
+    query += `
+      INSERT INTO questions (quiz_id, content, number_of_options)
+      VALUES ((SELECT id FROM new_quiz), $${values.length + 1}, $${values.length + 2})
+      RETURNING id AS question_id;
+    `;
+
+    values.push(questionContent, numberOfOptions);
+
+    // Capture question_id from the previous query
+    query += `
+      WITH new_question AS (
+        ${query}
+      )
+    `;
+
+    // Iterate over options for each question
+    for (let j = 0; j < numberOfOptions; j++) {
+      const option = body.optionsArray[i * numberOfOptions + j];
+
+      // Insert into options table
+      query += `
+        INSERT INTO options (question_id, content, correct)
+        VALUES ((SELECT question_id FROM new_question), $${values.length + 1}, $${values.length + 2})
+        RETURNING *;
+      `;
+
+      values.push(option.optionText, option.isCorrect);
+    }
+  }
+console.log("Generated Query: ", query)
+console.log("Query Values:", values);
   db.query(query, values)
     .then(data => {
-      const newQuiz = {data};
-      res.send(newQuiz); // the object being sent back to script
+      const newQuiz = { data };
+      res.send(newQuiz);
     })
     .then(() => {
-      window.location = "http://localhost:8080/"; // the path for the "redirect"
+      res.redirect("http://localhost:8080/"); // Redirect after successful insertion
     })
     .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-        window.location = "http://localhost:8080/new-quiz";
+      res.status(500).json({ error: err.message });
+      res.redirect("http://localhost:8080/new-quiz"); // Redirect on error
     });
 });
 
 module.exports = router;
+
+
+
 
