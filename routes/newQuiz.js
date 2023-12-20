@@ -1,91 +1,104 @@
-// Quizzes
+// new quiz
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     Imports and mounting                                                  ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 const express = require('express');
-const router = express.Router();
-const { Pool } = require('pg');
-const pool = new Pool({
-  user: 'labber',
-  host: 'localhost',
-  database: 'midterm',
-  password: '123',
-  port: 5432,
-});
+const router  = express.Router();
+const db = require('../db/connection');
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      Render The Site                                                      ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/', (req, res) => {
-  res.render('new-quiz');
+  const user = req.session.user;
+  res.render('new-quiz', user);
 });
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      SQL Post?                                                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 router.post('/', (req, res) => {
-  return pool.connect()
-  // QUIZZES
-  .then((user) => {
-    const { quizTitle, quizAuthor, questions } = req.body;
-    
-    return user.query(
-      `INSERT INTO quizzes(owner_id, title) VALUES($1, $2) RETURNING id`,
-      [userId, quizTitle]
+  const owner_id = req.session.user_id;
+  const body = req.body;
+  const title = body.quizTitle;
+
+  // Start building the dynamic query
+  let query = `
+    WITH new_quiz AS (
+      INSERT INTO quizzes (owner_id, title, rating)
+      VALUES ($1, $2, $3)
+      RETURNING *
     )
-  })
+  `;
 
-  // // QUESTIONS
-  // .then((user) => {
-  //   const { quizTitle, quizAuthor, questions } = req.body;
-  //   return user.query(
-  //     `INSERT INTO questions(
-  //       quizzes.id as quiz_id, 
-  //       content, 
-  //       number_of_options)`
-  //   )
-  // })
+  const values = [
+    owner_id,
+    title,
+    0, // rating
+  ];
 
-  // // OPTIONS
-  // .then((user) => { 
-  //   const { quizTitle, quizAuthor, questions } = req.body;
-  //   return user.query(
-  //     `INSERT INTO options (owner_id, title) `
-  //   )
-  // })
+  // Iterate over questions and options to dynamically build the query
+  for (let i = 0; i < body.questionNamesArray.length; i++) {
+    const questionContent = body.questionNamesArray[i];
+    const numberOfOptions = body.optionsCountArray[i];
 
-  // RELEASE
-  .then(() => {
-    // Release the database connection
-    user.release(); 
-    res.json({
-      success: true,
-      message: 'Data successfully inserted into the database.',
+    // Insert into questions table
+    query += `
+      INSERT INTO questions (quiz_id, content, number_of_options)
+      VALUES ((SELECT id FROM new_quiz), $${values.length + 1}, $${values.length + 2})
+      RETURNING id AS question_id;
+    `;
+
+    values.push(questionContent, numberOfOptions);
+
+    // Capture question_id from the previous query
+    query += `
+      WITH new_question AS (
+        ${query}
+      )
+    `;
+
+    // Iterate over options for each question
+    for (let j = 0; j < numberOfOptions; j++) {
+      const option = body.optionsArray[i * numberOfOptions + j];
+
+      // Insert into options table
+      query += `
+        INSERT INTO options (question_id, content, correct)
+        VALUES ((SELECT question_id FROM new_question), $${values.length + 1}, $${values.length + 2})
+        RETURNING *;
+      `;
+
+      values.push(option.optionText, option.isCorrect);
+    }
+  }
+console.log("Generated Query: ", query)
+console.log("Query Values:", values);
+  db.query(query, values)
+    .then(data => {
+      const newQuiz = { data };
+      res.send(newQuiz);
+    })
+    .then(() => {
+      res.redirect("http://localhost:8080/"); // Redirect after successful insertion
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+      res.redirect("http://localhost:8080/new-quiz"); // Redirect on error
     });
-
-  // ERROR HANDLING
-  // .catch((error) => {
-  //   console.error('Error connecting to the database:', error);
-  //   res.status(500).json({
-  //     success: false,
-  //     message: 'An error occurred while connecting to the database.',
-  //   });
-  // });
-  })
-})
+});
 
 module.exports = router;
 
-// CREATE TABLE quizzes (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   owner_id INTEGER REFERENCES users(id),
-//   title VARCHAR(255) NOT NULL,
-//   rating SMALLINT DEFAULT 0
-// );
-// -- recreate questions table 
-// CREATE TABLE questions (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   quiz_id INTEGER REFERENCES quizzes(id) NOT NULL,
-//   content TEXT,
-//   number_of_options INT
-// );
 
-// -- recreate options table 
-// CREATE TABLE options (
-//   id SERIAL PRIMARY KEY NOT NULL,
-//   question_id INTEGER REFERENCES questions(id),
-//   content TEXT,
-//   explanation TEXT,
-//   score SMALLINT DEFAULT 0
-// );
+module.exports = router;
+
+
+
