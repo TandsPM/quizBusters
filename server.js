@@ -42,7 +42,6 @@ app.use(express.static('public'));
 ////                 Creating Const Routes for each Resource                        ////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-const quizzesRoutes = require('./routes/quizzes');
 const newQuizRoutes = require('./routes/newQuiz');
 const profileRoutes = require('./routes/profile');
 const indexRoutes = require('./routes/index');
@@ -59,7 +58,6 @@ const indexRoutes = require('./routes/index');
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 db.connect();
-app.use('/quizzes', quizzesRoutes);
 app.use('/profile', profileRoutes);
 app.use('/new-quiz', newQuizRoutes);
 app.use('/', indexRoutes);
