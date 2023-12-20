@@ -1,6 +1,7 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 ////                      Login/Logout functionality                        ////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 const express = require('express');
 const router = express.Router();
 const cookieSession = require('cookie-session');
@@ -30,23 +31,36 @@ router.get('/login', (req, res) => {
   if (req.session.user) { //if logged in send to dashboard
     res.redirect('/');
   } else {
-    res.render('login'); //if logged in send to dashboard
+    res.render('login'); //if not logged in send to dashboard
   }
-})
+});
 
 //////////////////////////////////////////////////////////////////////
-//// post login page                                            ////
+//// render dashboard page                                        ////
 //////////////////////////////////////////////////////////////////////
-router.post('/login', (req, res) => {
-    const id = req.body.id;
-    console.log("id: ", id)
-    const user = getUserById(id);
-    req.session.user_id = req.body.id;
-    req.session.user = user;
-  if (req.session.user) { 
+
+router.get('/dashboard', (req, res) => {
+  if (req.session.user) { //if logged in send to dashboard
     res.redirect('/');
   } else {
-  res.render('login');
+    res.render('login'); //if not logged in send to dashboard
+  }
+});
+
+//////////////////////////////////////////////////////////////////////
+//// post login page                                              ////
+//////////////////////////////////////////////////////////////////////
+
+router.post('/login', (req, res) => {
+  const id = req.body.id;
+  console.log("id: ", id);
+  const user = getUserById(id);
+  req.session.user_id = req.body.id;
+  req.session.user = user;
+  if (req.session.user) {
+    res.redirect('/');
+  } else {
+    res.render('login');
   }
 });
 
@@ -59,7 +73,7 @@ router.get('/login/:id', (req, res) => {
 
 
 router.get('/index', allowAccess, (req, res) => {
-  
+
   console.log("req.session 2: ", req.session);
   res.render('index', { user_id: req.session.user });
 });
@@ -72,21 +86,28 @@ router.get('/checkLogin', (req, res) => {
 
 
 ///////////////////////////////////////////////////////////////////////
-////    Auto populate quizzes                                        ////
+////    Auto populate quizzes                                      ////
 ///////////////////////////////////////////////////////////////////////
- 
-  router.get('/', allowAccess, (req, res) => {
-    const user = req.session.user;
-    console.log("user: ", user);
 
-    const query = `SELECT * FROM quizzes`;
-    console.log("query: ", query);
+router.get('/', allowAccess, (req, res) => {
+  const user = req.session.user;
+  console.log("user: ", user);
 
-    db.query(query)
+  const quizQuery = `SELECT * FROM quizzes;`;
+  const questionsQuery = `SELECT * FROM questions;`;
+  const optionsQuery = `SELECT * FROM options;`;
 
-    .then(data => {
-      const dashboard = data;
-      // res.json({ dashboard });
+  Promise.all([
+    db.query(quizQuery),
+    db.query(questionsQuery),
+    db.query(optionsQuery)
+  ])
+
+    .then(([quizData, questionsData, optionsData])=> {
+      const dashboard = {
+        quizData, 
+        questionsData, 
+        optionsData};
       res.render('dashboard', { user, dashboard });
     })
     .catch(err => {
@@ -97,5 +118,6 @@ router.get('/checkLogin', (req, res) => {
 });
 
 module.exports = router;
+
 
 

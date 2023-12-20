@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('partials/_head', { pageTitle: 'Dashboard' }) %>
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <script src="/scripts/dashboard.js"></script>
-</head>
-<body class="dashboard-page">
-  <% const dashboardPage = true; %>
 
-  <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
-  <section id="page-content">
-    <%- include('partials/_header') %>
-    <main class="container">
-      <% if (user) { %>
-      <h2>Welcome to the Dashboard, <%= user.username %></h2>
-      <%- include('partials/_quiz-card') %>
+  <head>
+    <%- include('partials/_head', { pageTitle: 'Dashboard' }) %>
+      <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+      <script src="/scripts/dashboard.js"></script>
 
-      <!-- <button id="loginButton" class="btn btn-primary">Login</button> -->
-      <% } else { %>
-      <p>Please login to access more</p>
-    <% } %>
+  </head>
 
-    </main>
-  </section>
-
-</body>
+  <body class="dashboard-page">
+    <% const dashboardPage=true; %>
+    <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
+    <section id="page-content">
+      <main class="container">
+        <h2>Checkout These Quizzes by other Users! </h2>
+        <% const quizzes = dashboard.quizData.rows; %>
+        <% for (quiz of quizzes) { %>
+          <% let cardCounter = 0 ;%>
+          <% include('./partials/_quiz-card.ejs') ;%>
+          <% cardCounter ++ ;%>
+        <% } %>
+      </main>   
+    </section>
+  </body>
 </html>
