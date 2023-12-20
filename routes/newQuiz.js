@@ -28,6 +28,7 @@ router.post('/', (req, res) => {
   const owner_id = req.session.user_id;
   const body = req.body;
   const title = body.quizTitle;
+  const author = body.quizAuthor;
 
   // Start building the dynamic query
   let query = `
@@ -80,10 +81,11 @@ router.post('/', (req, res) => {
     }
   }
 console.log("Generated Query: ", query)
+console.log("author: ", author)
 console.log("Query Values:", values);
   db.query(query, values)
     .then(data => {
-      const newQuiz = { data };
+      const newQuiz = { data, author };
       res.send(newQuiz);
     })
     .then(() => {

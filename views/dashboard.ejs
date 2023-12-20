@@ -12,19 +12,21 @@
 
 <body class="dashboard-page">
   <% const dashboardPage=true; %>
-    <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
-      <section id="page-content">
-        <main class="container">
-          <h2>Checkout These Quizzes by Other Users! </h2>
-          <% let cardCounter=0 %>
-            <% for (quiz of dashboard.quizData.rows) { %>
-              <%- include('./partials/_quiz-card.ejs') %>
-                <% cardCounter++ %>
-                  <% console.log("cardCounter: ", cardCounter)%>
-              <% } %>
-        </main>
-      </section>
+  <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
 
+  <section id="page-content">
+    <main class="container">
+      <h2>Checkout These Quizzes by Other Users! </h2>
+
+      <% let cardCounter = 0 %>
+
+      <% for (quiz of dashboard.quizData.rows) { %>
+        <%- include('./partials/_quiz-card.ejs', {cardCounter}) %>
+        <% cardCounter++ %>
+      <% } %>
+
+    </main>
+  </section>
 </body>
 
 </html>
