@@ -51,16 +51,15 @@
 
 * tumblr/pinterest style homepage/dashboard of all extant quizzes 
   * users can share a link to a single quiz
-  * users can see a list of public quizzes
   * users can see a list of public quizzes on the home page
 
-* ajax the quizzes to remove scrolling (SPA behaviour i guess)
 * account locked edit and delete for quizzes
-* 1000% gotta be a Multi Page App combo thingy
+
 
 
 ###  Stretch Features
 * search bar for public quizzes and users
+* ajax the quizzes to remove scrolling (SPA behaviour i guess)
 * like/share/report buttons
 * quiz custom styles through SASS
 * ai based quiz inspiration widget
@@ -107,15 +106,5 @@
 * EDIT:    POST  -->  /quiz/:id
 * ADD:     POST  -->  /quiz
 * DELETE:  POST  -->  /quiz/:id/delete
-
-
-# skip the login, give em a cookie and send em home.
-
-```js
-// http://localhost:3000/login/2
- app.get('/login:id', (req,res) => {
-   req.session.user_id = req.params.id
- }); 
- ```
 
 
