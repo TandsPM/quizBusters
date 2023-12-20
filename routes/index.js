@@ -48,6 +48,11 @@ router.get('/index', allowAccess, async (req, res) => {
   res.render('index', { user_id: req.session.user, quizzes: quizzes });
 });
 
+router.get('/dashboard', allowAccess, (req, res) => {
+  
+  const user = req.session.user;
+  res.render('dashboard', { user: user });
+});
 
 //////////////////////////////////////////////////////////////////////
 //// post login by user id                                        ////
