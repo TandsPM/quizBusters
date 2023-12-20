@@ -92,22 +92,26 @@ router.get('/checkLogin', (req, res) => {
 router.get('/', allowAccess, (req, res) => {
   const user = req.session.user;
   console.log("user: ", user);
-
+  
   const quizQuery = `SELECT * FROM quizzes;`;
   const questionsQuery = `SELECT * FROM questions;`;
   const optionsQuery = `SELECT * FROM options;`;
-
+  const authorQuery = `
+  SELECT name FROM users
+  JOIN quizzes ON quizzes.owner_id = users.id`
   Promise.all([
     db.query(quizQuery),
     db.query(questionsQuery),
-    db.query(optionsQuery)
+    db.query(optionsQuery),
+    db.query(authorQuery)
   ])
 
-    .then(([quizData, questionsData, optionsData])=> {
+    .then(([quizData, questionsData, optionsData, authorData])=> {
       const dashboard = {
         quizData, 
         questionsData, 
-        optionsData};
+        optionsData,
+        authorData};
       res.render('dashboard', { user, dashboard });
     })
     .catch(err => {
