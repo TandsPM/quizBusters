@@ -14,18 +14,6 @@ router.use(cookieSession({
   initialSession: true,
 }));
 
-//////////////////////////////////////////////////////////////////////
-//// Check if Logged in                                           ////
-//////////////////////////////////////////////////////////////////////const cookieSession = require('cookie-session');
-const db = require('../db/connection');
-const { getUserById } = require('../db/queries/users');
-const { Pool } = require('pg');
-
-router.use(cookieSession({
-  secret: 'your-secret-key',
-  resave: true,
-  initialSession: true,
-}));
 
 //////////////////////////////////////////////////////////////////////
 //// Check if Logged in                                           ////
