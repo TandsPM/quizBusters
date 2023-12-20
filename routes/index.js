@@ -57,10 +57,6 @@ router.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
-router.get('/', allowAccess, (req, res) => {
-  const user = req.session.user;
-  res.render('dashboard', { user: user });
-});
 
 router.get('/index', allowAccess, (req, res) => {
   
@@ -75,41 +71,30 @@ router.get('/checkLogin', (req, res) => {
 });
 
 
-//////////////////////////////////////////////////////////////////////
-//// Auto populate quizzes                                        ////
-//////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+////    Auto populate quizzes                                        ////
+///////////////////////////////////////////////////////////////////////
+ 
+  router.get('/', allowAccess, (req, res) => {
+    const user = req.session.user;
+    console.log("user: ", user);
 
-// const pool = new Pool({
-//   user: 'labber',
-//   host: 'localhost',
-//   database: 'midterm',
-//   password: '123',
-//   port: 5432,
-// });
+    const query = `SELECT * FROM quizzes`;
+    console.log("query: ", query);
 
-// // pool to execute queries
-// const executeQuery = async (query, values) => {
-//   const client = await pool.connect();
-//   try {
-//     return await client.query(query, values);
-//   } finally {
-//     client.release();
-//   }
-// };
+    db.query(query)
 
-// router.get('/index', allowAccess, async (req, res) => {
-//   try {
-//     // Fetch quizzes from the database
-//     const result = await executeQuery('SELECT * FROM quizzes WHERE owner_id = $1', [req.session.user_id]);
-//     const quizzesFromDB = result.rows;
-
-//     // Render the index page with quizzes
-//     res.render('index', { user_id: req.session.user, quizzes: quizzesFromDB });
-//   } catch (error) {
-//     console.error('Error fetching quizzes:', error);
-//     res.status(500).send('Internal Server Error');
-//   }
-// });
+    .then(data => {
+      const dashboard = data;
+      // res.json({ dashboard });
+      res.render('dashboard', { user, dashboard });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
 
 module.exports = router;
 

@@ -14,6 +14,7 @@
     <main class="container">
       <% if (user) { %>
       <h2>Welcome to the Dashboard, <%= user.username %></h2>
+      <%- include('partials/_quiz-card') %>
 
       <!-- <button id="loginButton" class="btn btn-primary">Login</button> -->
       <% } else { %>
