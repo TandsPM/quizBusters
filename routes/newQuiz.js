@@ -14,6 +14,7 @@ const db = require('../db/connection');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/', (req, res) => {
+  console.log("req.session: ", req.session);
   res.render('new-quiz');
 });
 
@@ -26,11 +27,8 @@ router.post('/', (req, res) => {
   const owner_id = req.session.user_id; // Assuming you have the user information in the session
   const body = req.body; // Replace with the actual title you want to insert
   const title = body.quizTitle;
-  const author = body.quizAuthor;
-  console.log("req.session: ", req.session);
+  // const author = body.quizAuthor;
   console.log("owner_id: ", owner_id);
-  console.log("title: ", title);
-  console.log("author: ", author);
   const rating = 0;
 
   const query = `
