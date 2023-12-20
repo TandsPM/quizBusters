@@ -49,8 +49,11 @@ router.get('/index', allowAccess, async (req, res) => {
 });
 
 
-// Login with ID
-router.post('/login/:id', (req, res) => {
+//////////////////////////////////////////////////////////////////////
+//// post login by user id                                        ////
+//////////////////////////////////////////////////////////////////////
+
+router.post('/login', (req, res) => {
   const id = req.body.id;
   const user = getUserById(id);
 
