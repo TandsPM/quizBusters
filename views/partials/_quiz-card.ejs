@@ -4,28 +4,43 @@
    <%=  title %>
   </label>
   <br/>
+
   <label for="individual-quiz" class="individual-quiz-author">
     <%= (dashboard.authorData.rows[cardCounter].name) %>
-
-    </label>
+  </label>
   <br/>
-  <div class="quiz-content-demo">
-    <div class="question">do you prefer rain or sun?</div>
+
+  <!-- // for loop to make questions  -->
+  <!-- <% for (let i = 0; i < ) {  %> -->
+
+<% if (dashboard.questionsData.rows.quiz_id === cardCounter) { %>
+  <% console.log("dashboard.questionsData: ", dashboard.questionsData) %>
+  <% } %>
+  <% console.log("dashboard.questionsData.rows[cardCounter]: ", dashboard.questionsData.rows[cardCounter]) %>
+  <!-- // for now making first question -->
+
+  <div class="quiz-content">
+    <div class="question"> 
+      
+    </div>
+
     <fieldset>
       <div class="answer-options">
-        <div class="answer-option"><input type="radio" name="rain" value="rain" /> i like rain!</div>
-        <div class="answer-option"><input type="radio" name="sun" value="sun" /> i like sun!</div>
-        <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
+        <div class="answer-option">
+          <input type="radio" name="rain" value="rain" /> i like rain!
+        </div>
+
+        <div class="answer-option">
+          <input type="radio" name="sun" value="sun" /> i like sun!
+        </div>
+
+        <div class="answer-option">
+          <input type="radio" name="both" value="both" /> i like both!
+        </div>
+
     </fieldset>
     </div>
 
-    <div class="question">do you prefer books or movies?</div>
-    <fieldset>
-      <div class="answer-options">
-        <div class="answer-option"><input type="radio" name="books" value="books" /> i like books!</div>
-        <div class="answer-option"><input type="radio" name="movies" value="movies" /> i like movies!</div>
-        <div class="answer-option"><input type="radio" name="both" value="both" /> i like both!</div>
-    </fieldset>
   </div>
   <!-- <time class="individual-quiz-time">${ago}</time> -->
   <div class="reactions">
