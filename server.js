@@ -61,10 +61,7 @@ const indexRoutes = require('./routes/index');
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 db.connect();
-app.use('/quizzes', quizzesRoutes);
-app.use('/my-results', myResultsRoutes);
 app.use('/profile', profileRoutes);
-app.use('/faves', favesRoutes);
 app.use('/new-quiz', newQuizRoutes);
 app.use('/', indexRoutes);
 
@@ -81,17 +78,6 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('/login');
   }
 };
-
-app.get('/index', isAuthenticated, (req, res) => {
-  const user = req.session.user;
-  const templateVars = { user: user};
-
-  res.render('index', templateVars);
-});
-
-app.get('/quizzes', isAuthenticated, (req, res) => {
-  res.render('quizzes', { user: req.session.user });
-});
 
 // Home page
 app.get('/index', isAuthenticated, (req, res) => {

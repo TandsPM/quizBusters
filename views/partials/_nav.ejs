@@ -23,16 +23,14 @@
   <!-- button links // need to make these collapsible at some point-->
   <div class="navButtons">
     <% if (!dashboardPage) { %>
-      <a href="/quizzes"><button value="myQuizzes">Quizzes Page</button></a>
+      <a href="/"><button value="home">Home</button></a>
       <a href="/new-quiz"><button value="newQuiz">New Quiz</button></a>
-      <a href="/my-results"><button value="myResults">My Results</button></a>
-      <a href="/faves"><button value="myFaves">My Faves</button></a>
       <a href="/profile"><button value="me">ME!</button></a>
 
       <a href="/dashboard" id="loginButton"><button value="login">Logout</button></a>
   <% } else { %>
       <!-- Keep only the "Quizzes Page" link on the dashboard page -->
-      <a href="/quizzes"><button value="myQuizzes">Quizzes Page</button></a>
+      <a href="/index"><button value="home">Home</button></a>
       <a href="/index" id="loginButton"><button value="login">Login</button></a>
   <% } %>
   </div>
