@@ -11,41 +11,43 @@
   <br/>
 
   <!-- // for loop to make questions  -->
-  <!-- <% for (let i = 0; i < ) {  %> -->
-
-<% if (dashboard.questionsData.rows.quiz_id === cardCounter) { %>
-  <% console.log("dashboard.questionsData: ", dashboard.questionsData) %>
-  <% } %>
-  <% console.log("dashboard.questionsData.rows[cardCounter]: ", dashboard.questionsData.rows[cardCounter]) %>
-  <!-- // for now making first question -->
-
-  <div class="quiz-content">
-    <div class="question"> 
+  <% const questions = dashboard.questionsData.rows %>
+  
+  <% for (question of questions) { %>
+    <% if (question.quiz_id === cardCounter) { %>
+      <% console.log("question: ", question) %>
+      <div class="quiz-card-container">
+        <div class="quiz-content">
+          <div class="question"> 
+            
+          </div>
       
-    </div>
-
-    <fieldset>
-      <div class="answer-options">
-        <div class="answer-option">
-          <input type="radio" name="rain" value="rain" /> i like rain!
+          <fieldset>
+            <div class="answer-options">
+              <div class="answer-option">
+                <input type="radio" name="rain" value="rain" /> i like rain!
+              </div>
+      
+              <div class="answer-option">
+                <input type="radio" name="sun" value="sun" /> i like sun!
+              </div>
+      
+              <div class="answer-option">
+                <input type="radio" name="both" value="both" /> i like both!
+              </div>
+      
+          </fieldset>
+          </div>
+      
         </div>
-
-        <div class="answer-option">
-          <input type="radio" name="sun" value="sun" /> i like sun!
+        <div class="reactions">
+          <div class="reaction"><i class="fa-regular fa-flag"></i></div>
+          <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
+          <div class="reaction"><i class="fa-regular fa-heart"></i></div>
         </div>
+      </div>
+      <% } %>
+  <% } %>
 
-        <div class="answer-option">
-          <input type="radio" name="both" value="both" /> i like both!
-        </div>
 
-    </fieldset>
-    </div>
-
-  </div>
-  <!-- <time class="individual-quiz-time">${ago}</time> -->
-  <div class="reactions">
-    <div class="reaction"><i class="fa-regular fa-flag"></i></div>
-    <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
-    <div class="reaction"><i class="fa-regular fa-heart"></i></div>
-  </div>
 </a>
