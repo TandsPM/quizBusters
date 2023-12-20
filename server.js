@@ -72,43 +72,6 @@ app.use('/', indexRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-// Login with ID
-app.get('/login/:id', (req, res) => {
-  const id = req.params.id;
-  const user = getUserById(id);
-
-  if (user) {
-    req.session.user = user;
-    // redirect to the home page after login
-    res.redirect('/');
-  } else {
-    // Handle invalid user ID
-    res.status(404).send('User not found');
-  }
-});
-
-app.get('/login', (req, res) => {
-  if (req.session.user) {
-    res.redirect('/');
-  } else {
-  res.render('login');
-  }
-});
-
-// Add a route for handling login form submission
-app.post('/login', (req, res) => {
-  const id = req.body.id;
-  const user = getUserById(id);
-
-  if (user) {
-    req.session.user = user;
-    const redirect = req.query.redirect || '/';
-
-    res.redirect(redirect);
-  } else {
-    res.status(404).send('User not found');
-  }
-});
 
 // Middleware to check if user is authenticated
 const isAuthenticated = (req, res, next) => {
@@ -144,11 +107,6 @@ app.get('/dashboard', isAuthenticated, (req, res) => {
   res.render('dashboard', templateVars);
 })
 
-// Endpoint to check login status
-app.get('/checkLogin', (req, res) => {
-  const user = req.session.user;
-  res.json({ user });
-});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
