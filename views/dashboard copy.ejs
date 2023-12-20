@@ -13,16 +13,15 @@
     <%- include('partials/_nav', {dashboardPage: dashboardPage}) %>
       <section id="page-content">
         <%- include('partials/_header') %>
-        <main class="container">
-          <h2>Checkout These Quizzes by other Users! </h2>
-          <% const quizzes=dashboard.quizData.rows; %>
-            <% for (quiz of quizzes) { %>
-              <% let cardCounter=0 ;%>
-                <% include('./partials/_quiz-card.ejs') ;%>
-                  <% cardCounter ++ ;%>
-                    <% } %>
-        </main>
+          <main class="container">
+
+            <h2>Welcome to the Dashboard</h2>
+
+
+
+          </main>
       </section>
+
 </body>
 
 </html>
