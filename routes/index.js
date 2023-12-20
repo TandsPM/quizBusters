@@ -44,9 +44,6 @@ router.get('/', allowAccess, (req, res) => {
   res.render('dashboard', { user: user });
 });
 
-// router.get('/index', allowAccess, async (req, res) => {
-//   res.render('index', { user_id: req.session.user, quizzes: quizzes });
-// });
 
 router.get('/checkLogin', (req, res) => {
 
