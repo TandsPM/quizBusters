@@ -16,6 +16,19 @@ router.use(cookieSession({
 
 //////////////////////////////////////////////////////////////////////
 //// Check if Logged in                                           ////
+//////////////////////////////////////////////////////////////////////const cookieSession = require('cookie-session');
+const db = require('../db/connection');
+const { getUserById } = require('../db/queries/users');
+const { Pool } = require('pg');
+
+router.use(cookieSession({
+  secret: 'your-secret-key',
+  resave: true,
+  initialSession: true,
+}));
+
+//////////////////////////////////////////////////////////////////////
+//// Check if Logged in                                           ////
 //////////////////////////////////////////////////////////////////////
 const allowAccess = (req, res, next) => {
   if (req.session.user) {
@@ -32,6 +45,7 @@ const quizzes = [
 
 router.get('/login/:id', (req, res) => {
 
+
   req.session.user_id = req.body.id;
   res.redirect('/');
 });
@@ -44,14 +58,12 @@ router.get('/', allowAccess, (req, res) => {
   res.render('dashboard', { user: user });
 });
 
-// router.get('/index', allowAccess, async (req, res) => {
-//   res.render('index', { user_id: req.session.user, quizzes: quizzes });
-// });
+router.get('/index', allowAccess, async (req, res) => {
+  res.render('index', { user_id: req.session.user, quizzes: quizzes });
+});
 
 router.get('/checkLogin', (req, res) => {
-
-  console.log("req.session3: ", req.session);
-  const user = req.body.user;
+  const user = req.session.user;
   res.json({ user });
 });
 
