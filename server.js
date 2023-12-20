@@ -48,7 +48,6 @@ const myResultsRoutes = require('./routes/myResults');
 const profileRoutes = require('./routes/profile');
 const favesRoutes = require('./routes/faves');
 const indexRoutes = require('./routes/index');
-const { getUserById } = require('./db/queries/users');
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -83,7 +82,6 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-
 app.get('/index', isAuthenticated, (req, res) => {
   const user = req.session.user;
   const templateVars = { user: user};
@@ -102,8 +100,6 @@ app.get('/index', isAuthenticated, (req, res) => {
   const templateVars = { user: user };
   res.render('index', templateVars);
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

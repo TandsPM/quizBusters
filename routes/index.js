@@ -14,22 +14,41 @@ router.use(cookieSession({
   initialSession: true,
 }));
 
-
-//////////////////////////////////////////////////////////////////////
-//// Check if Logged in                                           ////
-//////////////////////////////////////////////////////////////////////
 const allowAccess = (req, res, next) => {
-  if (req.session.user) {
+  if (req.session && (req.session.user)) {
     next();
   } else {
     res.redirect('/login');
   }
 };
 
-const quizzes = [
-  { id: 1, title: 'Quiz 1', rating: 5 },
-  { id: 2, title: 'Quiz 2', rating: 4 },
-];
+//////////////////////////////////////////////////////////////////////
+//// render login page                                            ////
+//////////////////////////////////////////////////////////////////////
+
+router.get('/login', (req, res) => {
+  if (req.session.user) { //if logged in send to dashboard
+    res.redirect('/');
+  } else {
+    res.render('login'); //if logged in send to dashboard
+  }
+})
+
+//////////////////////////////////////////////////////////////////////
+//// post login page                                            ////
+//////////////////////////////////////////////////////////////////////
+router.post('/login', (req, res) => {
+    const id = req.body.id;
+    console.log("id: ", id)
+    const user = getUserById(id);
+    req.session.user_id = req.body.id;
+    req.session.user = user;
+  if (req.session.user) { 
+    res.redirect('/');
+  } else {
+  res.render('login');
+  }
+});
 
 router.get('/login/:id', (req, res) => {
 
@@ -38,17 +57,17 @@ router.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
-//////////////////////////////////////////////////////////////////////
-//// render login page                                            ////
-//////////////////////////////////////////////////////////////////////
 router.get('/', allowAccess, (req, res) => {
   const user = req.session.user;
   res.render('dashboard', { user: user });
 });
 
-// router.get('/index', allowAccess, async (req, res) => {
-//   res.render('index', { user_id: req.session.user, quizzes: quizzes });
-// });
+router.get('/index', allowAccess, (req, res) => {
+  
+  console.log("req.session 2: ", req.session);
+  res.render('index', { user_id: req.session.user });
+});
+
 
 router.get('/checkLogin', (req, res) => {
   const user = req.session.user;
