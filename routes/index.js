@@ -15,18 +15,6 @@ router.use(cookieSession({
 
 //////////////////////////////////////////////////////////////////////
 //// Check if Logged in                                           ////
-//////////////////////////////////////////////////////////////////////const cookieSession = require('cookie-session');
-const db = require('../db/connection');
-const { getUserById } = require('../db/queries/users');
-
-router.use(cookieSession({
-  secret: 'your-secret-key',
-  resave: true,
-  initialSession: true,
-}));
-
-//////////////////////////////////////////////////////////////////////
-//// Check if Logged in                                           ////
 //////////////////////////////////////////////////////////////////////
 const allowAccess = (req, res, next) => {
   if (req.session.user) {
