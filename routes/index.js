@@ -3,6 +3,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 const express = require('express');
 const router = express.Router();
+const cookieSession = require('cookie-session');
+const db = require('../db/connection');
+const { getUserById } = require('../db/queries/users');
 const { Pool } = require('pg');
 
 const db = require('../db/connection');
@@ -51,7 +54,6 @@ router.get('/', allowAccess, (req, res) => {
   const user = req.session.user;
   res.render('dashboard', { user: user });
 });
-
 
 // router.get('/index', allowAccess, async (req, res) => {
 //   res.render('index', { user_id: req.session.user, quizzes: quizzes });
