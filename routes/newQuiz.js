@@ -98,7 +98,5 @@ console.log("Query Values:", values);
 module.exports = router;
 
 
-module.exports = router;
-
 
 
