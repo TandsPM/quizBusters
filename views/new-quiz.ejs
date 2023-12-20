@@ -23,7 +23,8 @@
   <div id="new-quiz-container"></div>
 
   <!-- including the nav bar  -->
-  <%- include('partials/_nav') %>
+  <% const dashboardPage = false; %>
+  <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
   <form>
     <header>
       <div class="new-quiz-info">
@@ -39,11 +40,11 @@
         <h4 id="quiz-author">Jane Doe</h4>
 
       </div>
-      
+
     </header>
 
     <main class="new-quiz-container">
-      
+
       <section class="new-quiz-questions"></section> <!--questions populate in here-->
 
       <button class="add-question-btn">Add a Question</button>

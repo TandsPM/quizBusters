@@ -16,16 +16,22 @@
 
 <body>
   <!-- Top nav bar moved to partial (fixed) -->
-  <%- include('partials/_nav') %>
+  <% const dashboardPage = false; %>
+  <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
   <!-- Page-specific (main) content here -->
   <section id="page-content">
     <%- include('partials/_header') %>
     <main class="container">
 
-      <form id="login" action="/login" method="post">
-        <input type="email" name="email">
-        <button type="submit">Login</button>
-      </form>
+      <div id="quiz-container">
+        <% for (let i = 0; i < quizzes.length; i++) { %>
+        <div class="quiz-box">
+          <h3><%= quizzes[i].title %></h3>
+          <p>ID: <%= quizzes[i].id %></p>
+          <p>Rating: <%= quizzes[i].rating %></p>
+        </div>
+      <% } %>
+      </div>
 
       <%- include('partials/_dashboard-content') %>
     </main>
