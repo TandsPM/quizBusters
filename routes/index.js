@@ -92,7 +92,7 @@ router.get('/checkLogin', (req, res) => {
 router.get('/', allowAccess, (req, res) => {
   const user = req.session.user;
   console.log("user: ", user);
-  
+
   const quizQuery = `SELECT * FROM quizzes;`;
   const questionsQuery = `SELECT * FROM questions;`;
   const optionsQuery = `SELECT * FROM options;`;
@@ -108,8 +108,8 @@ router.get('/', allowAccess, (req, res) => {
 
     .then(([quizData, questionsData, optionsData, authorData])=> {
       const dashboard = {
-        quizData, 
-        questionsData, 
+        quizData,
+        questionsData,
         optionsData,
         authorData};
       res.render('dashboard', { user, dashboard });
