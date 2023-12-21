@@ -1,4 +1,5 @@
 <a href="/views/quizzes" class="quiz-link">
+<link rel="stylesheet" href="/styles/dashboard.css" type="text/css" />
 <label for="individual-quiz" class="individual-quiz-title">
    <% const title = JSON.stringify(dashboard.quizData.rows[cardCounter].title) %>
    <%=  title %>
@@ -16,7 +17,7 @@
 <% let questionCounter = 0; %>
 
 <% for (question of questions) { %>
-  
+
   <% if (question.quiz_id === cardCounter + 1 && questionCounter < 2) { %>
     <div class="quiz-card-container">
       <div class="quiz-content">
