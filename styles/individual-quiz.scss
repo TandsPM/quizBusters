@@ -3,17 +3,17 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .container {
-  max-width: 800px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
 }
 
 .quiz-card-container {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  background-color: #fff;
+  background-color: #6a9b9b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -22,15 +22,14 @@
 }
 
 #submitQuiz {
-  margin: 10px;
-  padding: 10px;
+  margin: 80px;
+  padding: 20px;
   height: 100px;
   background-color: #588B8B;
   color:#231515;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 400px;
 }
 
 #submitQuiz:hover {
