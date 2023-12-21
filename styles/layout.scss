@@ -19,8 +19,8 @@
 
 body {
   color: #FFFFFF;
-  background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
+  background-color: #ffffffe2;
+  // background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
   margin-left: auto;
   margin-right: auto;
   font-size: 24px;
@@ -208,6 +208,16 @@ body {
   font-size: medium;
 }
 
+.quiz-card {
+  flex: 0 0 calc(33.33% - 20px);
+}
+
+/* mobile styles */
+@media only screen and (max-width: 768px) {
+  .quiz-card {
+    flex: 0 0 calc(100% - 20px);
+  }
+}
 
 /* tablet/desktop styles */
 
@@ -233,7 +243,12 @@ body {
     flex-direction: row;
     justify-content: flex-start;
   }
+
+  .quiz-card {
+    flex: 0 0 calc(50% - 20px);
+  }
 }
+
 
 /* padding-top: 140px;
 height: 520px;

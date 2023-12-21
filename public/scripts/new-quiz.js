@@ -92,7 +92,7 @@ const createQuestionElement = function() {
   <div class="individual-question">
     <label for="new-question">New Question:</label><br>
     <input type="text" class="question-input" name="question-input" value="What colour is the sky?"><br>
-    <h4 class="question-name">What colour is the sky?</h4> 
+    <h4 class="question-name">What colour is the sky?</h4>
     <div class="question-options">
       <fieldset>
         <div class="new-question-options-box"> <!-- add new options to here-->
@@ -144,7 +144,7 @@ const collectData = function() {
       const optionElement = $(this);
       const optionText = optionElement.find("input[type='text']").val();
       const isCorrect = optionElement.find("input[type='radio'].correct").prop("checked");
-      optionsArray.push({ optionText, isCorrect }) 
+      optionsArray.push({ optionText, isCorrect })
     });
     optionsCountArray.push(optionsCount)
   });
