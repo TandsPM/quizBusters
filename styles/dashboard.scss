@@ -10,6 +10,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, box-shadow 0.3, color 0.3s;
+}
 
 &:hover {
   background-color: #FFD5C2;
@@ -25,8 +26,9 @@
   color: #555;
 }
 
-.quiz-card-container {
+.quiz-card {
   display: flex;
+  background-color: #C8553D;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 15px;
@@ -71,5 +73,9 @@ font-size: 14px;
 .reactions .fa-heart:hover {
   color: rgb(160, 115, 42);
 }
+.dashboard-page {
+  
 }
+
+
 
