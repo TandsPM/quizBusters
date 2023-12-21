@@ -78,11 +78,11 @@ router.get('/:quizId', (req, res) => {
 
 
 router.post('/:quizId', (req, res) => {
-  const user_id = req.session.user.id; // Assuming user ID is stored in the session
+  const user_id = req.session.user.id; // Assumes user ID is stored in the session
   const quiz_id = req.params.quizId;
-  const userAnswers = req.body.userAnswers; // Assuming the user's answers are sent in the request body
+  const userAnswers = req.body.userAnswers; // Assumes the user's answers are sent in the request body
 
-  // Calculate total and total_score based on user's answers (adjust this logic based on your requirements)
+  // Calculate total and total_score based on user's answers (logic in need of adjusting)
   const total = Object.keys(userAnswers).length;
   const total_score = calculateTotalScore(userAnswers);
 
@@ -101,9 +101,9 @@ router.post('/:quizId', (req, res) => {
     });
 });
 
-// Function to calculate total score (customize this based on your scoring logic)
+// Function to calculate total score 
 function calculateTotalScore(userAnswers) {
-  // Add your scoring logic here
+  // Add  scoring logic here
   // Example: Loop through userAnswers and calculate the score
   let totalScore = 0;
   for (const questionId in userAnswers) {
