@@ -141,7 +141,7 @@ nav button:disabled {
   .dropdown:hover .dropdown-content {
     display: block;
   }
-}
+
 
 .dropdown-content a {
   display: block;
@@ -183,15 +183,18 @@ nav button:disabled {
   left: 0;
   right: 0;
 }
+}
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .dropdown {
+  .dropbtn {
+    // visibility: hidden;
     display: none;
   }
 
   .navButtons {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
   }
 
   nav button {
