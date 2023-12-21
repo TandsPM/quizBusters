@@ -1,81 +1,90 @@
-.quiz-link {
-  display: inline-block;
-  width: calc(33.33% - 20px);
+.dashboard-page {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.quiz-car-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.quiz-card {
+  flex: 0 0 calc(50% - 20px);
   margin: 10px;
   text-decoration: none;
   color: inherit;
   padding: 10px;
   border: 1px solid black;
-  background-color: #C8553D;
-  border-radius: 8px;
+  background-color: #567dab;
+  border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, box-shadow 0.3, color 0.3s;
+  padding: 10px;
 }
 
-// &:hover {
-//   background-color: #FFD5C2;
-// }
+.quiz-card:hover {
+  background-color:#6e92b1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
 
 .individual-quiz-title {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .individual-quiz-author {
-  font-size: 14px;
-  color: #555;
-}
-
-.quiz-card {
-  display: flex;
-  background-color: #C8553D;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px
-}
-
-.quiz-content {
-
+  font-size: 16px;
+  color: #231515;
+  margin-bottom: 10px;
 }
 
 .question {
   font-size: 16px;
+  margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .answer-options {
-font-size: 14px;
+font-size: 16px;
 }
 
 .reactions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   padding: 20px;
+  gap: 5px;
 }
 
 .reactions:hover {
   box-shadow: 0 0 10px rgb(7, 58, 100, 0.5);
+  background-color: #567dab;
 }
 
-.reactions .fa-flag:hover {
-  color: rgb(160, 115, 42);
-}
-
-.reactions .fa-retweet:hover {
-  color: rgb(160, 115, 42);
-}
-
+.reactions .fa-flag:hover,
+.reactions .fa-retweet:hover,
 .reactions .fa-heart:hover {
-  color: rgb(160, 115, 42);
-}
-.dashboard-page {
-  
+  color: #f28f3b;
 }
 
 
+@media only screen and (max-width: 768px) {
+  .quiz-card {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
 
+@media only screen and (max-width: 480px) {
+  .quiz-card {
+    flex: 0 0 calc(100% - 20px);
+  }
+}
