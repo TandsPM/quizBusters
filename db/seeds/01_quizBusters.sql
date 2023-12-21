@@ -6,10 +6,11 @@ INSERT INTO users (name, email, password) VALUES
   ('Robin Fleur', 'example@example.com', 'password');
 
 -- Seed data for the 'quizzes' table
-INSERT INTO quizzes (owner_id, title, rating) VALUES
-  (1, 'Geography!', 4),
-  (2, 'Movie Buff Quiz', 5),
-  (3, 'Science Trivia', 3);
+INSERT INTO quizzes (owner_id, title, privacy, rating) VALUES
+  (1, 'Geography!', false, 4),
+  (2, 'Movie Buff Quiz', false, 5),
+  (3, 'private test quiz', true, 3),
+  (4, 'Science Trivia', false, 3);
 
 -- Seed data for the 'quiz_submission' table
 INSERT INTO quiz_submission (user_id, quiz_id, total, total_score) VALUES
@@ -25,7 +26,8 @@ INSERT INTO questions (quiz_id, content, number_of_options) VALUES
   (2, 'Who directed the movie "Inception"?', 2),
   (2, 'Who directed the movie "Titanic"?', 2),
   (2, 'Who directed the movie "The Dark Knight"?', 3),
-  (3, 'What is the chemical symbol for gold?', 2);
+  (3, 'private question?', 2),
+  (4, 'What is the chemical symbol for gold?', 2);
 
 -- Seed data for the 'options' table
 INSERT INTO options (question_id, content, explanation, correct) VALUES
@@ -44,8 +46,8 @@ INSERT INTO options (question_id, content, explanation, correct) VALUES
   (6, 'Steven Spielberg', 'Incorrect answer!', false),
   (6, 'Christopher Nolan', 'Correct answer', true),
   (6, 'David Kronenberg', 'Incorrect answer!', false),
-  (7, 'Au', 'Incorrect answer', false),
-  (7, 'Ag', 'Correct answer!', true);
+  (8, 'Au', 'Incorrect answer', false),
+  (8, 'Ag', 'Correct answer!', true);
 
 -- Seed data for the 'answers' table
 INSERT INTO answers (quiz_submission_id, question_id, option_id, value) VALUES

@@ -2,9 +2,9 @@
 
 * Group members: Tandra Malm @tmalm_ , Robin Fleur @saintsappho 
 * Chosen Project: Quiz App
-* What your team is working on today: backend database integration and login cookie functionality.
-* What was a struggle yesterday: running into the wall, and getting stuck in unhelpful mental states.
-* Est Project Completion: 45 % 
+* What your team is working on today: implementing quiz submission, grading and view results, and making css lovely site wide
+* What was a struggle yesterday: loops and queries with shifting data, nav bar organization and sitwide styling
+* Est Project Completion: 75% (of what we can get to)  
 
 # THE GOAL:
 
@@ -15,7 +15,7 @@
 * Simulate the working world where you do not always get to completely cherry pick your team, stack or product features
 * Practice demoing an app to help prepare for the final project and employer interviews
 
-### Functionality Requirements:
+### Functionality Requirements: ALL COMPLETE
 * ES6 for server-side (NodeJS) code
 
 * NodeJS
@@ -47,13 +47,13 @@
 
 * all users can attempt a quiz
   * users can see the results of their recent attempt
-  * users can share a link to the result of their attempt // quiz_result/:id
+  * users can share a link to the result of their attempt // quiz/:id
 
 * tumblr/pinterest style homepage/dashboard of all extant quizzes 
   * users can share a link to a single quiz
   * users can see a list of public quizzes on the home page
 
-* account locked edit and delete for quizzes
+* account locked edit and delete for quizzes 
 
 
 

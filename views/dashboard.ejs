@@ -20,11 +20,14 @@
       <% let cardCounter = 0 %>
 
       <% for (quiz of dashboard.quizData.rows) { %>
-        <div class="quiz-card <%= dashboard.quizData.rows[cardCounter].id %>" >
-          <%- include('./partials/_quiz-card.ejs', {cardCounter}) %>
-          <% cardCounter++ %>
-        </div>
+        <% if (!quiz.privacy) { %>
+          <div class="quiz-card <%= dashboard.quizData.rows[cardCounter].id %>" >
+            <%- include('./partials/_quiz-card.ejs', { cardCounter }) %>
+            
+          </div>
         <% } %>
+        <% cardCounter++ %>
+      <% } %>
       </div>
     </main>
   </section>
