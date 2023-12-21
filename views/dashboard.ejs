@@ -16,14 +16,16 @@
   <section id="page-content">
     <main class="container">
       <h2>Checkout These Quizzes by Our Users! </h2>
+      <div class="quiz-car-layout">
       <% let cardCounter = 0 %>
-      
+
       <% for (quiz of dashboard.quizData.rows) { %>
         <div class="quiz-card <%= dashboard.quizData.rows[cardCounter].id %>" >
           <%- include('./partials/_quiz-card.ejs', {cardCounter}) %>
           <% cardCounter++ %>
         </div>
         <% } %>
+      </div>
     </main>
   </section>
 </body>
