@@ -28,31 +28,26 @@ router.get('/:quizId', (req, res) => {
   const quizId = req.params.quizId;
 
   const user = req.session.user;
-  console.log("quizId: ", quizId);
 
   const quizQuery = `
   SELECT * FROM quizzes 
   WHERE quizzes.id = '${quizId}';`;
-  console.log("quizQuery: ", quizQuery);
 
   const questionsQuery = `
   SELECT * FROM questions
-  JOIN quizzes ON quizzes.id = questions.quiz_id
+  LEFT JOIN quizzes ON quizzes.id = questions.quiz_id
   WHERE quizzes.id = '${quizId}';`;
-  console.log("questionsQuery: ", questionsQuery);
 
   const optionsQuery = `
-  SELECT * FROM options
-  JOIN questions ON questions.id = options.question_id
-  JOIN quizzes ON quizzes.id = questions.quiz_id
+  SELECT options.id as id, questions.id as question_id, options.content as content,  correct FROM options
+  LEFT JOIN questions ON questions.id = options.question_id
+  LEFT JOIN quizzes ON quizzes.id = questions.quiz_id
   WHERE quizzes.id = '${quizId}';`;
-  console.log("optionsQuery: ", optionsQuery);
 
   const authorQuery = `
   SELECT name FROM users
-  JOIN quizzes ON quizzes.owner_id = users.id
+  LEFT JOIN quizzes ON quizzes.owner_id = users.id
   WHERE quizzes.id = '${quizId}';`;
-  console.log("authorQuery: ", authorQuery);
 
   Promise.all([
     db.query(quizQuery),
@@ -68,7 +63,6 @@ router.get('/:quizId', (req, res) => {
         optionsData,
         authorData
       };
-      console.log("dashboard: ", dashboard);
       res.render('quiz_id', {dashboard} );
     })
     .catch(err => {
