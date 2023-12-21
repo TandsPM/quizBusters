@@ -6,7 +6,12 @@ $(document).ready(function () {
     event.preventDefault();
     window.location.href = '/index';
   });
-// });
+
+  // handling logout button
+  $('#logoutButton').on('click', function (event) {
+    event.preventDefault();
+    logoutUser();
+  });
 
 // check login status to deny access
 function loginStatus() {
@@ -17,6 +22,7 @@ function loginStatus() {
       if (data.user) {
         $('#quizzesLink').attr('href', '/quizzes');
         $('#quizzesLink').show();
+        $('#logoutButton').show();
 
       } else {
         $('#loginButton').on('click', function (event) {
