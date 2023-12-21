@@ -32,9 +32,8 @@
             <% const options = dashboard.optionsData.rows.filter(opt => opt.question_id === question.id) %>
             <% for (let i = 0; i < question.number_of_options && i < options.length; i++) { %>
               <div class="answer-option">
-                <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>!
+                <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>
               </div>
-              <% console.log("option: ", options[i]) %>
             <% } %>
           </div>
         </fieldset>

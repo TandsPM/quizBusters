@@ -11,66 +11,64 @@
 
 <body class="dashboard-page">
   <% const dashboardPage=true; %>
-  <%- include('partials/_nav', { dashboardPage: false }) %>
+    <%- include('partials/_nav', { dashboardPage: false }) %>
 
-  <section id="page-content">
-    <main class="container">
-      
-      <label for="individual-quiz" class="individual-quiz-title">
-        <% const title = JSON.stringify(dashboard.quizData.rows) %>
-        <%=  title %>
-       </label>
-       <br/>
-     
-       <label for="individual-quiz" class="individual-quiz-author">
-         <%= (dashboard.authorData.rows.name) %>
-       </label>
-       <br/>
-     
-       <!-- // for loop to make questions  -->
-       <% const questions = dashboard.questionsData.rows %>
-     
-     <% let questionCounter = 0; %>
-     
-     <% for (question of questions) { %>
-     
-         <div class="quiz-card-container">
-           <div class="quiz-content">
-             <div class="question">
-               <%= question.content %>
-             </div>
-     
-             <fieldset>
-               <% let opts = 0 %>
-               <div class="answer-options">
-     
-                 <% const options = dashboard.optionsData.rows.filter(opt => opt.question_id === question.id) %>
-                 <% for (let i = 0; i < question.number_of_options && i < options.length; i++) { %>
-                   <div class="answer-option">
-                     <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>!
-                   </div>
-                   <% console.log("option: ", options[i]) %>
-                 <% } %>
-               </div>
-             </fieldset>
-           </div>
-           <div class="reactions">
-             <div class="reaction"><i class="fa-regular fa-flag"></i></div>
-             <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
-             <div class="reaction"><i class="fa-regular fa-heart"></i></div>
-           </div>
-         </div>
-         <% questionCounter++; %>
-       
-     <% } %>
-     
-     </a>
-     
+      <section id="page-content">
+        <main class="container">
 
-    </main>
-  </section>
+          <label for="individual-quiz" class="individual-quiz-title">
+            <% const title=JSON.stringify(dashboard.quizData.rows[0].title) %>
+              <h1>
+                <%= title %>
+              </h1>
+          </label>
+
+          <label for="individual-quiz" class="individual-quiz-author">
+            <h3> by <%= (dashboard.authorData.rows[0].name) %>
+                </p>
+          </label>
+          <br />
+
+          <!-- // for loop to make questions  -->
+          <% const questions=dashboard.questionsData.rows %>
+
+            <% let questionCounter=0; %>
+
+              <% for (question of questions) { %>
+
+                <div class="quiz-card-container">
+                  <div class="quiz-content">
+                    <div class="question">
+                      <%= question.content %>
+                    </div>
+
+                    <fieldset>
+                      <% let opts=0 %>
+                        <div class="answer-options">
+
+                          <% const options=dashboard.optionsData.rows.filter(opt=> opt.question_id === question.id) %>
+                            <% for (let i=0; i < question.number_of_options && i < options.length; i++) { %>
+                              <div class="answer-option">
+                                <input type="radio" name="<%= options[i].content %>"
+                                  value="<%= options[i].content %>" />
+                                <%= options[i].content %>
+                              </div>
+                              <% } %>
+                        </div>
+                    </fieldset>
+                  </div>
+                  <div class="reactions">
+                    <div class="reaction"><i class="fa-regular fa-flag"></i></div>
+                    <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
+                    <div class="reaction"><i class="fa-regular fa-heart"></i></div>
+                  </div>
+                </div>
+                <% questionCounter++; %>
+                  <% } %>
+
+
+        </main>
+      </section>
 </body>
 
 </html>
-
-
