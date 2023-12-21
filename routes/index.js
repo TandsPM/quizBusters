@@ -71,11 +71,40 @@ router.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
+///////////////////////////////////////////////////////////////////////
+////    Auto populate quizzes to indes                             ////
+///////////////////////////////////////////////////////////////////////
 
 router.get('/index', allowAccess, (req, res) => {
+  const user = req.session.user;
+  console.log("user: ", user);
 
-  console.log("req.session 2: ", req.session);
-  res.render('index', { user_id: req.session.user });
+  const quizQuery = `SELECT * FROM quizzes;`;
+  const questionsQuery = `SELECT * FROM questions;`;
+  const optionsQuery = `SELECT * FROM options;`;
+  const authorQuery = `
+  SELECT name FROM users
+  JOIN quizzes ON quizzes.owner_id = users.id`
+  Promise.all([
+    db.query(quizQuery),
+    db.query(questionsQuery),
+    db.query(optionsQuery),
+    db.query(authorQuery)
+  ])
+
+    .then(([quizData, questionsData, optionsData, authorData])=> {
+      const dashboard = {
+        quizData,
+        questionsData,
+        optionsData,
+        authorData};
+      res.render('index', { user, dashboard });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 
@@ -86,7 +115,7 @@ router.get('/checkLogin', (req, res) => {
 
 
 ///////////////////////////////////////////////////////////////////////
-////    Auto populate quizzes                                      ////
+////    Auto populate quizzes to dashboard                         ////
 ///////////////////////////////////////////////////////////////////////
 
 router.get('/', allowAccess, (req, res) => {
@@ -120,6 +149,7 @@ router.get('/', allowAccess, (req, res) => {
         .json({ error: err.message });
     });
 });
+
 
 module.exports = router;
 

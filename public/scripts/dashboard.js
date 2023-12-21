@@ -28,8 +28,8 @@ $(document).ready(function() {
   })
 
   // grading quiz
-  $('#submitQuiz').on('click', () => {
-    gradeQuiz();
+  $('#submitQuiz').on("click", () => {
+    console.log("Submit!!")
   });
 
 });
@@ -45,14 +45,7 @@ function loginStatus() {
         $('#quizzesLink').attr('href', '/quizzes');
         $('#quizzesLink').show();
         $('#logoutButton').show();
-
-      } else {
-        $('#loginButton').text('Login');
-        // .on('click', function (event) {
-        //   event.preventDefault();
-        //   window.location.href = '/login';
-        // });
-      }
+      } 
     },
     error: function(error) {
       console.log('Error:', error);

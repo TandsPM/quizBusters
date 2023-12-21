@@ -2,33 +2,42 @@
 <html lang="en">
 
 <head>
-   <!-- head -->
+  <!-- head -->
   <%- include('partials/_head', { pageTitle: 'Home' }) %>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-  <!-- Include your index.js file -->
-  <script src="/index"></script>
-
+    <!-- Include your index.js file -->
+    <script src="/index"></script>
+    <script src="/scripts/dashboard.js"></script>
+    <link rel="stylesheet" href="/styles/dashboard.css" type="text/css" />
 </head>
 
-<body>
-  <!-- Top nav bar moved to partial (fixed) -->
-  <% const dashboardPage = false; %>
+<body class="dashboard-page">
+  <% const dashboardPage=false; %>
   <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
-  <!-- Page-specific (main) content here -->
-  <section id="page-content">
-    <%- include('partials/_header') %>
-    <main class="container">
 
-   
+    <section id="page-content">
+      <main class="container">
+        <h2>Checkout These Quizzes by Our Users! </h2>
+        <div class="quiz-car-layout">
+          <% let cardCounter=0 %>
 
-      
-    </main>
-  </section>
+            <% for (quiz of dashboard.quizData.rows) { %>
+              <% if (!quiz.privacy) { %>
+                <div class="quiz-card <%= dashboard.quizData.rows[cardCounter].id %>">
+                  <%- include('./partials/_quiz-card.ejs', { cardCounter }) %>
 
+                </div>
+                <% } %>
+                  <% cardCounter++ %>
+                    <% } %>
+        </div>
+      </main>
+    </section>
 </body>
+
 
 </html>
