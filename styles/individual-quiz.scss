@@ -13,7 +13,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  background-color: #6a9b9b;
+  background-color: #7399ba;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,11 +21,15 @@
   margin-bottom: 20px;
 }
 
+.answer-option {
+  margin: 10px;
+}
+
 #submitQuiz {
   margin: 80px;
   padding: 20px;
   height: 100px;
-  background-color: #588B8B;
+  background-color: #6a8dac;
   color:#231515;
   border: none;
   border-radius: 5px;
@@ -33,5 +37,5 @@
 }
 
 #submitQuiz:hover {
-  background-color: #406666;
+  background-color: #57748e;
 }
