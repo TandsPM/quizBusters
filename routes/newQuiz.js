@@ -89,11 +89,11 @@ console.log("Query Values:", values);
       res.send(newQuiz);
     })
     .then(() => {
-      res.redirect("http://localhost:8080/"); // Redirect after successful insertion
+      window.location.href ="http://localhost:8080/"; // Redirect after successful insertion
     })
     .catch(err => {
       res.status(500).json({ error: err.message });
-      res.redirect("http://localhost:8080/new-quiz"); // Redirect on error
+      window.location.href ="http://localhost:8080/new-quiz"; // Redirect on error
     });
 });
 

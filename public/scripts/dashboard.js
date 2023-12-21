@@ -27,6 +27,11 @@ $(document).ready(function() {
     window.location.href = `/quiz/${quizId}`;
   })
 
+  // grading quiz
+  $('#submitQuiz').on('click', () => {
+    gradeQuiz();
+  });
+
 });
 
 
@@ -54,3 +59,4 @@ function loginStatus() {
     },
   });
 }
+
