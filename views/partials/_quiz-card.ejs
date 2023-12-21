@@ -1,4 +1,5 @@
-<a href="/views/quizzes" class="quiz-link">
+
+
 <label for="individual-quiz" class="individual-quiz-title">
    <% const title = JSON.stringify(dashboard.quizData.rows[cardCounter].title) %>
    <%=  title %>
@@ -6,7 +7,7 @@
   <br/>
 
   <label for="individual-quiz" class="individual-quiz-author">
-    <%= (dashboard.quizData.rows[cardCounter].name) %>
+    <%= (dashboard.authorData.rows[cardCounter].name) %>
   </label>
   <br/>
 
@@ -32,7 +33,6 @@
               <div class="answer-option">
                 <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>!
               </div>
-              <% console.log("option: ", options[i]) %>
             <% } %>
           </div>
         </fieldset>
