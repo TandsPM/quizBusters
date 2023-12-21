@@ -20,17 +20,22 @@
     <% } %>
   </div> -->
 
+  <!-- button for collapse -->
+
   <!-- button links // need to make these collapsible at some point-->
   <div class="navButtons">
+    <div class="dropdown">
+      <button class="dropbtn">Menu</button>
+      <div class="dropdown-content">
     <% if (!dashboardPage) { %>
       <a href="/new-quiz"><button value="newQuiz">New Quiz</button></a>
       <a href="/profile"><button value="me">ME!</button></a>
-
       <a href="/dashboard" id="loginButton"><button value="login">Logout</button></a>
   <% } else { %>
       <!-- Keep only the "Quizzes Page" link on the dashboard page -->
       <a href="/index" id="loginButton"><button value="login">Login</button></a>
   <% } %>
+  </div>
   </div>
 </nav>
 
