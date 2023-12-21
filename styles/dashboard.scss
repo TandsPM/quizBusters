@@ -1,3 +1,7 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     DASHBOARD                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 .dashboard-page {
   display: flex;
   justify-content: center;
@@ -48,11 +52,17 @@
 
 .question {
   font-size: 16px;
+  font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .answer-options {
+font-size: 16px;
+margin-bottom: 5px;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 10px;
 font-size: 16px;
 }
 
@@ -71,15 +81,61 @@ font-size: 16px;
 }
 
 .reactions .fa-flag:hover,
-.reactions .fa-retweet:hover,
 .reactions .fa-heart:hover {
   color: #f28f3b;
 }
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     INDIVIDUAL QUIZ                           ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.quiz-card-container {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-content {
+  margin-bottom: 20px;
+}
+
+#submitQuiz {
+  padding: 10px;
+  height: 100px;
+  background-color: #588B8B;
+  color:#231515;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 400px;
+}
+
+#submitQuiz:hover {
+  background-color: #406666;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     DEVICE SIZES                           ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 @media only screen and (max-width: 768px) {
   .quiz-card {
     flex: 0 0 calc(50% - 20px);
+  }
+
+  .quiz-card-container {
+    width: 100%;
   }
 }
 
