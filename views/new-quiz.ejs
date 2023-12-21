@@ -25,7 +25,7 @@
   <!-- including the nav bar  -->
   <% const dashboardPage = false; %>
   <%- include('partials/_nav', { dashboardPage: dashboardPage }) %>
-  <form>
+  <form method="POST">
     <header>
       <div class="new-quiz-info">
 
@@ -40,10 +40,10 @@
         <h4 id="quiz-author">Jane Doe</h4>
 
         <label for="privacy">Check this box to make your quiz private:</label><br>
-        <input type="radio" id="privacy" name="privacy" value="private"><br>
+        <input type="checkbox" id="privacy" name="privacy" value="true"><br>
         <p>(Private quizzes will not show up on the public dashboard, but anyone with the link can find it.)</p>
-
-      </div>
+      
+    </div>
 
     </header>
 

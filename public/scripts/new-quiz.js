@@ -10,10 +10,15 @@ $(document).ready(function() {
   $("#new-title").on("input", updateQuizTitle);
 
   $("#new-author").on("input", updateQuizAuthor);
+  
+  $("#privacy").on("change", updatePrivacy);
+
 
   $(".new-quiz-container").on("input", ".question-input", updateQuestion);
 
   $("#submitButton").on("click", submitNewQuiz);
+
+
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -34,6 +39,11 @@ const updateQuizAuthor = function() {
   $("#quiz-author").text(inputValue);
 };
 
+const updatePrivacy = function() {
+  if ($(this).val()) {
+    console.log ($(this))
+  }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 ////                      Option Functions                             ////

@@ -5,7 +5,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const db = require('../db/connection');
 
 
@@ -29,71 +29,51 @@ router.post('/', (req, res) => {
   const body = req.body;
   const title = body.quizTitle;
   const author = body.quizAuthor;
+  
+  console.log("body: ", body);
+  // console.log("information to submit:", "owner_id", owner_id, "body", body )
 
-  // Start building the dynamic query
-  let query = `
-    WITH new_quiz AS (
-      INSERT INTO quizzes (owner_id, title, rating)
-      VALUES ($1, $2, $3)
-      RETURNING *
-    )
-  `;
+  const quizValues = [owner_id, title, 0]; // add privacy to values, query and as variable
+  db.query(`
+    INSERT INTO quizzes (owner_id, title, rating) 
+    VALUES ($1, $2, $3)
+    RETURNING *;`, quizValues)
 
-  const values = [
-    owner_id,
-    title,
-    0, // rating
-  ];
+    .then((quizData) => {
+      const questions = body.questionNamesArray;
+      let optionsCount = 0
+      for (let i = 0; i < questions.length; i++) {
+        const questionsValues = [quizData.rows[0].id, questions[i], body.optionsCountArray[i]];
+        db.query(`
+        INSERT INTO questions (quiz_id, content, number_of_options) 
+        VALUES ($1, $2, $3)
+        RETURNING *;`, questionsValues
+        )
 
-  // Iterate over questions and options to dynamically build the query
-  for (let i = 0; i < body.questionNamesArray.length; i++) {
-    const questionContent = body.questionNamesArray[i];
-    const numberOfOptions = body.optionsCountArray[i];
+          .then((questionData) => {
+            const options = body.optionsArray;
+            const cap = (Number(optionsCount) + Number(body.optionsCountArray[i]))
+            for (let u = optionsCount; u < cap; u++) {
 
-    // Insert into questions table
-    query += `
-      INSERT INTO questions (quiz_id, content, number_of_options)
-      VALUES ((SELECT id FROM new_quiz), $${values.length + 1}, $${values.length + 2})
-      RETURNING id AS question_id;
-    `;
-
-    values.push(questionContent, numberOfOptions);
-
-    // Capture question_id from the previous query
-    query += `
-      WITH new_question AS (
-        ${query}
-      )
-    `;
-
-    // Iterate over options for each question
-    for (let j = 0; j < numberOfOptions; j++) {
-      const option = body.optionsArray[i * numberOfOptions + j];
-
-      // Insert into options table
-      query += `
-        INSERT INTO options (question_id, content, correct)
-        VALUES ((SELECT question_id FROM new_question), $${values.length + 1}, $${values.length + 2})
-        RETURNING *;
-      `;
-
-      values.push(option.optionText, option.isCorrect);
-    }
-  }
-console.log("Generated Query: ", query)
-console.log("author: ", author)
-console.log("Query Values:", values);
-  db.query(query, values)
-    .then(data => {
-      const newQuiz = { data, author };
-      res.send(newQuiz);
+              const optionsValues = [questionData.rows[0].id, options[u].optionText, options[u].isCorrect];
+              db.query(`
+              INSERT INTO options (question_id, content, correct) 
+              VALUES ($1, $2, $3)
+              RETURNING *;`, optionsValues
+              )
+              .then((optionsData) => {
+              })
+            }
+            optionsCount += Number(body.optionsCountArray[i]);
+          });
+      }
     })
     .then(() => {
-      window.location.href ="http://localhost:8080/"; // Redirect after successful insertion
+      res.json({ redirect: 'http://localhost:8080/' }); // Redirect after successful insertion
     })
     .catch(err => {
       res.status(500).json({ error: err.message });
-      window.location.href ="http://localhost:8080/new-quiz"; // Redirect on error
+      res.json({ redirect: 'http://localhost:8080/new-quiz"' }); // Redirect on error
     });
 });
 

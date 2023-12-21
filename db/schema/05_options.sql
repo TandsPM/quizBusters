@@ -7,7 +7,6 @@ CREATE TABLE options (
   id SERIAL PRIMARY KEY NOT NULL,
   question_id INTEGER REFERENCES questions(id),
   content TEXT,
-  explanation TEXT,
   correct BOOLEAN
 );
 

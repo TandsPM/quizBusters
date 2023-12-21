@@ -30,24 +30,24 @@ INSERT INTO questions (quiz_id, content, number_of_options) VALUES
   (4, 'What is the chemical symbol for gold?', 2);
 
 -- Seed data for the 'options' table
-INSERT INTO options (question_id, content, explanation, correct) VALUES
-  (1, 'Paris', 'Correct answer!', true),
-  (1, 'Berlin', 'Incorrect answer', false),
-  (2, 'Paris', 'Incorrect answer', false),
-  (2, 'Berlin', 'Correct answer!', true),
-  (2, 'London', 'Incorrect answer!', false),
-  (3, 'Ottawa', 'Correct answer!', true),
-  (3, 'Toronto', 'Incorrect answer', false),
-  (4, 'Christopher Nolan', 'Correct answer!', true),
-  (4, 'Steven Spielberg', 'Incorrect answer', false),
-  (5, 'Steven Spielberg', 'Incorrect answer', false),
-  (5, 'Jimmy Cameroon', 'Correct answer!', true),
-  (5, 'Christopher Nolan', 'Incorrect answer', false),
-  (6, 'Steven Spielberg', 'Incorrect answer!', false),
-  (6, 'Christopher Nolan', 'Correct answer', true),
-  (6, 'David Kronenberg', 'Incorrect answer!', false),
-  (8, 'Au', 'Incorrect answer', false),
-  (8, 'Ag', 'Correct answer!', true);
+INSERT INTO options (question_id, content, correct) VALUES
+  (1, 'Paris', true),
+  (1, 'Berlin', false),
+  (2, 'Paris', false),
+  (2, 'Berlin', true),
+  (2, 'London', false),
+  (3, 'Ottawa', true),
+  (3, 'Toronto', false),
+  (4, 'Christopher Nolan', true),
+  (4, 'Steven Spielberg', false),
+  (5, 'Steven Spielberg', false),
+  (5, 'Jimmy Cameroon', true),
+  (5, 'Christopher Nolan', false),
+  (6, 'Steven Spielberg',  false),
+  (6, 'Christopher Nolan',  true),
+  (6, 'David Kronenberg',  false),
+  (8, 'Au', false),
+  (8, 'Ag', true);
 
 -- Seed data for the 'answers' table
 INSERT INTO answers (quiz_submission_id, question_id, option_id, value) VALUES
