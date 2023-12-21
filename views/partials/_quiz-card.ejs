@@ -12,44 +12,33 @@
 
   <!-- // for loop to make questions  -->
   <% const questions = dashboard.questionsData.rows %>
-  
-  <% for (question of questions) { %>
-    <% if (question.quiz_id === cardCounter+1) { %>
-      <% console.log("question: ", question) %>
-      <div class="quiz-card-container">
-        <div class="quiz-content">
-          <div class="question"> 
-            <%= question.content %>
-            
-          </div>
-      
-          <fieldset>
-            <div class="answer-options">
 
-              <% let optionsCount = 0 %>
-              <% const options = dashboard.optionsData.rows %>
-              <% for (let i = 0; i < question.number_of_options; i++) { %>
-                <% if (options.question_id === questions.id) { %>
-                  <div class="answer-option">
-                    <input type="radio" name="<%options[i].content%>" value="<%options[i].content%>" /> <%= options[i].content %>!
-                  </div>
-                  <% } %>
-                <% console.log("option: ", options[i]) %>
-              
-              <% } %>
-              <% optionsCount += question.number_of_options %>
-          </fieldset>
+<% for (question of questions) { %>
+  <% if (question.quiz_id === cardCounter + 1) { %>
+    <div class="quiz-card-container">
+      <div class="quiz-content">
+        <div class="question">
+          <%= question.content %>
+        </div>
+
+        <fieldset>
+          <div class="answer-options">
+
+            <% const options = dashboard.optionsData.rows.filter((opt) => opt.question_id === question.id) %>
+            <% for (let i = 0; i < question.number_of_options; i++) { %>
+              <div class="answer-option">
+                <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>!
+              </div>
+            <% } %>
           </div>
-      
-        </div>
-        <div class="reactions">
-          <div class="reaction"><i class="fa-regular fa-flag"></i></div>
-          <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
-          <div class="reaction"><i class="fa-regular fa-heart"></i></div>
-        </div>
+        </fieldset>
       </div>
-      <% } %>
+      <div class="reactions">
+        <div class="reaction"><i class="fa-regular fa-flag"></i></div>
+        <div class="reaction"><i class="fa-solid fa-retweet"></i></div>
+        <div class="reaction"><i class="fa-regular fa-heart"></i></div>
+      </div>
+    </div>
   <% } %>
-
-
+<% } %>
 </a>
