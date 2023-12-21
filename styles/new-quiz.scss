@@ -3,32 +3,41 @@
   quiz box
   */
 
-  // QUIZ TITLE
-  .new-quiz-info {
-    color: #588B8B;
-    margin-left: 30px;
-    h1 {
-      margin-bottom: 5px;
-    }
-    h4 {
-      margin-top: 5px;
-      margin-left: 5px;
-    }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                     QUIZ TITLE                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.new-quiz-info {
+  color: #588B8B;
+  margin-left: 30px;
+
+  h1 {
+    margin-bottom: 50px;
   }
 
-/////////////////////////////////////////////////////////////////////
-// TEMPERARY until we load more quizes
-//  .new-quiz-questions {
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin-top: 100px;
-//   margin-bottom: 20px;
-//   padding: 20px;
-//   width: 90%;
-//   background-color: #C8553D;
-// }
-/////////////////////////////////////////////////////////////////////
+  h4 {
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+}
 
+.new-quiz-info label[for="new-title"],
+.new-quiz-info label[for="new-author"] {
+  font-size: 24px;
+}
+
+.new-quiz-container {
+  margin-top: 10px;
+  padding-top: 0px;
+  padding-bottom: 100px;
+}
+
+.new-quiz-info {
+  margin-top: 0px;
+  margin-left: 30px;
+  padding-top: 150px;
+}
 
 /* Style spans for dynamic values */
 #userScore,
@@ -59,19 +68,32 @@
 }
 
 
-.new-quiz-container {
-  margin-top: 10px;
-  padding-top: 0px;
-  padding-bottom: 100px;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      PRIVACY                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+.privacy-container {
+  color: #333;
+  font-size: 16px;
+  width: 40%;
+  border: 0.5px solid black;
+  padding: 20px;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.new-quiz-info {
-  margin-top: 0px;
-  padding-top: 150px;
+.new-quiz-info input[type="radio"] {
+  margin: 20px 10px 10px 10px;
 }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      QUESTION BOXES                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .individual-question {
-  width: 70%;
+  width: 50%;
   border: 2px solid black;
   padding: 20px;
   margin-bottom: 15px;
@@ -84,3 +106,54 @@
 .individual-question:first-child {
   margin-top: 0;
 }
+
+.question-name {
+  border-radius: 5px;
+}
+
+.add-question-btn {
+  margin: 30px;
+  border-radius: 5px;
+}
+
+#submitButton {
+  margin: 30px;
+  border-radius: 5px;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+////                      DEVICE SIZES                            ////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media only screen and (max-width: 768px) {
+  .new-quiz-info {
+    margin-left: 10px;
+  }
+
+.new-quiz-info label[for="new-title"],
+.new-quiz-info label[for="new-author"] {
+  font-size: 18px;
+}
+
+.new-quiz-container,
+.new-quiz-info {
+  padding: 20px;
+}
+
+.privacy-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.individual-question {
+  width: 100%;
+  margin-left: 0;
+}
+
+.add-question-btn,
+#submitButton {
+  margin: 15px;
+}
+}
+
