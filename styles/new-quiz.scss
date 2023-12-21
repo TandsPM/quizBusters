@@ -18,15 +18,15 @@
 
 /////////////////////////////////////////////////////////////////////
 // TEMPERARY until we load more quizes
- .new-quiz-questions {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
-  margin-bottom: 20px;
-  padding: 20px;
-  width: 90%;
-  background-color: #C8553D;
-}
+//  .new-quiz-questions {
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 100px;
+//   margin-bottom: 20px;
+//   padding: 20px;
+//   width: 90%;
+//   background-color: #C8553D;
+// }
 /////////////////////////////////////////////////////////////////////
 
 
@@ -70,3 +70,17 @@
   padding-top: 150px;
 }
 
+.individual-question {
+  width: 70%;
+  border: 2px solid black;
+  padding: 20px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  background-color: #567dab;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.individual-question:first-child {
+  margin-top: 0;
+}
