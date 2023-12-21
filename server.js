@@ -42,8 +42,10 @@ app.use(express.static('public'));
 ////                 Creating Const Routes for each Resource                        ////
 ////////////////////////////////////////////////////////////////////////////////////////
 
+
 const newQuizRoutes = require('./routes/newQuiz');
 const profileRoutes = require('./routes/profile');
+const quizIdRoutes = require('./routes/quizByID');
 const indexRoutes = require('./routes/index');
 
 
@@ -60,6 +62,7 @@ const indexRoutes = require('./routes/index');
 db.connect();
 app.use('/profile', profileRoutes);
 app.use('/new-quiz', newQuizRoutes);
+app.use('/quiz', quizIdRoutes);
 app.use('/', indexRoutes);
 
 // Home page
