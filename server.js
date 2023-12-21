@@ -76,17 +76,6 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-app.get('/index', isAuthenticated, (req, res) => {
-  const user = req.session.user;
-  const templateVars = { user: user};
-
-  res.render('index', templateVars);
-});
-
-// app.get('/quizzes', isAuthenticated, (req, res) => {
-//   res.render('quizzes', { user: req.session.user });
-// });
-
 // Home page
 app.get('/index', isAuthenticated, (req, res) => {
   const user = req.session.user;

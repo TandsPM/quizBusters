@@ -7,7 +7,6 @@
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="/scripts/dashboard.js"></script>
 
-
 </head>
 
 <body class="dashboard-page">
@@ -17,14 +16,14 @@
   <section id="page-content">
     <main class="container">
       <h2>Checkout These Quizzes by Other Users! </h2>
+      <div class="quiz-card">
+        <% let cardCounter = 0 %>
 
-      <% let cardCounter = 0 %>
-
-      <% for (quiz of dashboard.quizData.rows) { %>
-        <%- include('./partials/_quiz-card.ejs', {cardCounter}) %>
-        <% cardCounter++ %>
-      <% } %>
-
+        <% for (quiz of dashboard.quizData.rows) { %>
+          <%- include('./partials/_quiz-card.ejs', {cardCounter}) %>
+          <% cardCounter++ %>
+        <% } %>
+        </div>
     </main>
   </section>
 </body>
