@@ -28,27 +28,31 @@ router.get('/:quizId', (req, res) => {
   const quizId = req.params.quizId;
 
   const user = req.session.user;
-  console.log("user: ", user);
-  
+  console.log("quizId: ", quizId);
+
   const quizQuery = `
   SELECT * FROM quizzes 
   WHERE quizzes.id = '${quizId}';`;
+  console.log("quizQuery: ", quizQuery);
 
   const questionsQuery = `
   SELECT * FROM questions
-  WHERE quizzes.id = '${quizId}'
-  JOIN quizzes ON quizzes.id = questions.quiz_id;`;
+  JOIN quizzes ON quizzes.id = questions.quiz_id
+  WHERE quizzes.id = '${quizId}';`;
+  console.log("questionsQuery: ", questionsQuery);
 
   const optionsQuery = `
   SELECT * FROM options
-  WHERE quizzes.id = '${quizId}'
   JOIN questions ON questions.id = options.question_id
-  JOIN quizzes ON quizzes.id = questions.quiz_id;`;
+  JOIN quizzes ON quizzes.id = questions.quiz_id
+  WHERE quizzes.id = '${quizId}';`;
+  console.log("optionsQuery: ", optionsQuery);
 
   const authorQuery = `
   SELECT name FROM users
-  WHERE quizzes.id = '${quizId}
-  JOIN quizzes ON quizzes.owner_id = users.id;`;
+  JOIN quizzes ON quizzes.owner_id = users.id
+  WHERE quizzes.id = '${quizId}';`;
+  console.log("authorQuery: ", authorQuery);
 
   Promise.all([
     db.query(quizQuery),
@@ -57,14 +61,15 @@ router.get('/:quizId', (req, res) => {
     db.query(authorQuery)
   ])
 
-    .then(([quizData, questionsData, optionsData, authorData])=> {
+    .then(([quizData, questionsData, optionsData, authorData]) => {
       const dashboard = {
-        quizData, 
-        questionsData, 
+        quizData,
+        questionsData,
         optionsData,
-        authorData};
-        console.log("dashboard: ", dashboard)
-        res.render('quiz_id', dashboard);
+        authorData
+      };
+      console.log("dashboard: ", dashboard);
+      res.render('quiz_id', {dashboard} );
     })
     .catch(err => {
       res
