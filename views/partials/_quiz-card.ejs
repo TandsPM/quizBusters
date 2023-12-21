@@ -6,7 +6,7 @@
   <br/>
 
   <label for="individual-quiz" class="individual-quiz-author">
-    <%= (dashboard.authorData.rows[cardCounter].name) %>
+    <%= (dashboard.quizData.rows[cardCounter].name) %>
   </label>
   <br/>
 
@@ -14,28 +14,30 @@
   <% const questions = dashboard.questionsData.rows %>
   
   <% for (question of questions) { %>
-    <% if (question.quiz_id === cardCounter) { %>
+    <% if (question.quiz_id === cardCounter+1) { %>
       <% console.log("question: ", question) %>
       <div class="quiz-card-container">
         <div class="quiz-content">
           <div class="question"> 
+            <%= question.content %>
             
           </div>
       
           <fieldset>
             <div class="answer-options">
-              <div class="answer-option">
-                <input type="radio" name="rain" value="rain" /> i like rain!
-              </div>
-      
-              <div class="answer-option">
-                <input type="radio" name="sun" value="sun" /> i like sun!
-              </div>
-      
-              <div class="answer-option">
-                <input type="radio" name="both" value="both" /> i like both!
-              </div>
-      
+
+              <% let optionsCount = 0 %>
+              <% const options = dashboard.optionsData.rows %>
+              <% for (let i = 0; i < question.number_of_options; i++) { %>
+                <% if (options.question_id === questions.id) { %>
+                  <div class="answer-option">
+                    <input type="radio" name="<%options[i].content%>" value="<%options[i].content%>" /> <%= options[i].content %>!
+                  </div>
+                  <% } %>
+                <% console.log("option: ", options[i]) %>
+              
+              <% } %>
+              <% optionsCount += question.number_of_options %>
           </fieldset>
           </div>
       
