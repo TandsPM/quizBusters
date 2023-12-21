@@ -13,8 +13,10 @@
   <!-- // for loop to make questions  -->
   <% const questions = dashboard.questionsData.rows %>
 
+<% let questionCounter = 0; %>
+
 <% for (question of questions) { %>
-  <% if (question.quiz_id === cardCounter + 1) { %>
+  <% if (question.quiz_id === cardCounter + 1 && questionCounter < 2) { %>
     <div class="quiz-card-container">
       <div class="quiz-content">
         <div class="question">
@@ -22,13 +24,15 @@
         </div>
 
         <fieldset>
+          <% let opts = 0 %>
           <div class="answer-options">
 
-            <% const options = dashboard.optionsData.rows.filter((opt) => opt.question_id === question.id) %>
-            <% for (let i = 0; i < question.number_of_options; i++) { %>
+            <% const options = dashboard.optionsData.rows.filter(opt => opt.question_id === question.id) %>
+            <% for (let i = 0; i < question.number_of_options && i < options.length; i++) { %>
               <div class="answer-option">
                 <input type="radio" name="<%= options[i].content %>" value="<%= options[i].content %>" /> <%= options[i].content %>!
               </div>
+              <% console.log("option: ", options[i]) %>
             <% } %>
           </div>
         </fieldset>
@@ -39,6 +43,8 @@
         <div class="reaction"><i class="fa-regular fa-heart"></i></div>
       </div>
     </div>
+    <% questionCounter++; %>
   <% } %>
 <% } %>
+
 </a>
