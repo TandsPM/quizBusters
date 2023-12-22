@@ -6,7 +6,7 @@ nav {
   height: 100px;
   position: fixed;
   width: 100%;
-  padding: 1.5em;
+  padding: 1em;
   border-bottom: #19005e8d;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -14,6 +14,7 @@ nav {
   background-image: url("https://www.transparenttextures.com/patterns/cardboard.png");
   display: flex;
   justify-content: space-between;
+  z-index: 1000;
 }
 
 .dashboard-page .btn-to-hide {
@@ -32,7 +33,7 @@ nav {
 
 #quizBusters {
   font-family: 'Bungee Shade', sans-serif;
-  font-size: 40px;
+  font-size: 30px;
   color: whitesmoke;
   background-color: rgba(60, 64, 67, .3);
   display: inline;
@@ -48,9 +49,9 @@ nav {
 //////////////////////////////////////////////////////////////////////////////////////
 
 .navbar-toggle .icon-bar {
+  height: 2px;
   display: block;
   width: 22px;
-  height: 2px;
   background-color: #cccccc;
   border-radius: 1px;
 }
@@ -128,7 +129,45 @@ nav button:disabled {
 ////                     DEVICE SIZES                           ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 498px) and (max-width: 767px) {
+  nav {
+    min-height: auto;
+    padding: 1em;
+  }
+
+  #icon {
+    visibility: hidden;
+  }
+
+  #quizBusters {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .navbar-toggle .icon-bar {
+    height: 2px;
+  }
+
+  nav button {
+    height: 40px;
+    font-size: 12px;
+    padding: 2px 16px;
+  }
+
+  .dropdown-content {
+    background-color: rgba(223, 150, 86, 0.5);
+    min-width: 120px;
+  }
+
+  .dropdown-content a {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .navbar-collapse.show {
+    top: 60px; /* Adjust the top position as needed */
+  }
+
   .dropdown {
     display: block;
     background-color: transparent;
@@ -197,12 +236,13 @@ nav button:disabled {
 
   .navButtons {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
   }
 
   nav button {
     margin-right: 10px;
+    margin-bottom: 0;
   }
 }
 

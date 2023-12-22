@@ -2,14 +2,6 @@
 ////                     DASHBOARD                            ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-// .dashboard-page {
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-//   margin: 0;
-//   padding: 0;
-// }
-
 .quiz-card-layout {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -19,8 +11,10 @@
 .quiz-card {
   margin: 10px;
   text-decoration: none;
+  position: relative;
   color: inherit;
-  padding: 10px;
+  min-height: 450px;
+  padding: 30px;
   border: 2px solid #324a67;
   background-color: #567dab;
   border-radius: 15px;
@@ -62,6 +56,10 @@ font-size: 16px;
 }
 
 .reactions {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  // margin-top: auto;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -88,6 +86,10 @@ font-size: 16px;
 @media only screen and (max-width: 768px) {
   .quiz-card {
     flex: 0 0 calc(50% - 20px);
+  }
+
+  .quiz-card-layout {
+    grid-template-columns: auto;
   }
 
   .quiz-card-container {
