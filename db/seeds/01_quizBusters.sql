@@ -13,10 +13,10 @@ INSERT INTO quizzes (owner_id, author, title, privacy, rating) VALUES
   (4, 'Robin Fleur', 'Science Trivia', false, 3);
 
 -- Seed data for the 'quiz_submission' table
-INSERT INTO quiz_submission (user_id, quiz_id, total, total_score) VALUES
-  (1, 1, 10, 8),
-  (2, 2, 15, 12),
-  (3, 3, 8, 6);
+-- INSERT INTO quiz_submission (user_id, quiz_id, total, total_score) VALUES
+--   (1, 1, 10, 8),
+--   (2, 2, 15, 12),
+--   (3, 3, 8, 6);
 
 -- Seed data for the 'questions' table
 INSERT INTO questions (quiz_id, content, number_of_options) VALUES
@@ -52,10 +52,3 @@ INSERT INTO options (question_id, content, correct) VALUES
   (8, 'Ag', true);
 
 -- Seed data for the 'answers' table
-INSERT INTO answers (quiz_submission_id, question_id, option_id, value) VALUES
-  (1, 1, 1, 1),  -- John Doe answered the first question correctly
-  (1, 2, 3, 0),  -- John Doe answered the second question incorrectly
-  (2, 1, 1, 1),  -- Jane Smith answered the first question correctly
-  (2, 2, 4, 0),  -- Jane Smith answered the second question incorrectly
-  (3, 1, 2, 0),  -- Bob Johnson answered the first question incorrectly
-  (3, 2, 5, 1);   -- Bob Johnson answered the second question correctly

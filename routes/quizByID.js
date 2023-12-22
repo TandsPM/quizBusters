@@ -100,6 +100,46 @@ router.post('/:quiz_id', (req, res) => {
 
 
 
+///////////////////////////////////////////////////////////////////
+////          post /quiz/:quizId and get result                ////
+///////////////////////////////////////////////////////////////////
+
+router.post('/:quiz_id/delete', (req, res) => {
+  const quizIdToDelete = req.params.quiz_id;
+  console.log("got here") // Assuming you send the quiz ID in the request body
+
+  // Delete options first
+  db.query(`
+    DELETE FROM options
+    WHERE question_id IN (
+      SELECT id
+      FROM questions
+      WHERE quiz_id = $1
+    );
+  `, [quizIdToDelete])
+  .then(() => {
+    // Delete questions
+    return db.query(`
+      DELETE FROM questions
+      WHERE quiz_id = $1;
+    `, [quizIdToDelete]);
+  })
+  .then(() => {
+    // Delete quiz
+    return db.query(`
+      DELETE FROM quizzes
+      WHERE id = $1;
+    `, [quizIdToDelete]);
+  })
+  .then(() => {
+    res.json({ redirect: 'http://localhost:8080/index' });
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ error: 'An error occurred while deleting the quiz and associated data.' });
+  });
+});
+
 
 module.exports = router;
 
