@@ -9,6 +9,7 @@
 
 h1 {
   color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 h3 {
@@ -100,7 +101,40 @@ h3 {
   .container {
     padding: 1em;
   }
-  #page-content {
-    padding-top: 150px;
-  }
+}
+
+#score{
+  display:none;
+  background-color: #6a8dac;
+  color: #ccc;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 100px;
+  background-color: #6a8dac;
+  color:#231515;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#correctAnswers{
+  display:none;
+  background-color: #6a8dac;
+  color: #ccc;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 100px;
+  background-color: #6a8dac;
+  color:#231515;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#questionCounter{
+  display: none;
 }
