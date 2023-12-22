@@ -3,13 +3,22 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 .container {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 250px;
+  margin: 50 auto 0;
+  padding: 20px 10px;
+}
+
+h1 {
+  color: black;
+}
+
+h3 {
+  color: black;
 }
 
 .quiz-card-container {
-  margin-bottom: 40px;
+  max-height: 500px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
