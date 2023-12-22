@@ -83,7 +83,7 @@ font-size: 16px;
 ////                     DEVICE SIZES                           ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 850px) {
   .quiz-card {
     flex: 0 0 calc(50% - 20px);
   }
@@ -91,7 +91,9 @@ font-size: 16px;
   .quiz-card-layout {
     grid-template-columns: auto;
   }
-
+  #page-content {
+    padding-top: 30px;
+  }
   .quiz-card-container {
     width: 100%;
   }
