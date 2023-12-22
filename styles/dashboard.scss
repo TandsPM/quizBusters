@@ -13,7 +13,7 @@
   text-decoration: none;
   position: relative;
   color: inherit;
-  min-height: 450px;
+  min-height: 550px;
   padding: 30px;
   border: 2px solid #324a67;
   background-color: #567dab;
@@ -64,7 +64,7 @@ font-size: 16px;
   align-items: flex-end;
   width: 100%;
   padding: 20px;
-  gap: 5px;
+  gap: 10px;
 }
 
 .reactions:hover {
@@ -97,15 +97,20 @@ font-size: 16px;
     grid-template-columns: auto;
   }
   #page-content {
-    padding-top: 30px;
+    padding-top: 90px;
   }
   .quiz-card-container {
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .quiz-card {
-    flex: 0 0 calc(100% - 20px);
-  }
-}
+// @media only screen and (max-width: 480px) {
+//   .quiz-card {
+//     // flex: 0 0 calc(70% - 20px);
+//   }
+// }
+
+// @media only screen and (min-width: 851px) and (max-width: 1025px) {
+
+// }
+
