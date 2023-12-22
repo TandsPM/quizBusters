@@ -59,7 +59,6 @@ font-size: 16px;
   position: absolute;
   bottom: 0;
   left: 0;
-  // margin-top: auto;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -71,6 +70,7 @@ font-size: 16px;
 .reactions:hover {
   box-shadow: 0 0 10px rgb(7, 58, 100, 0.5);
   background-color: #567dab;
+  border-radius: 10px;;
 }
 
 .reactions .fa-flag:hover,
@@ -79,7 +79,9 @@ font-size: 16px;
 }
 
 #page-content {
-  padding-top: 30px;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  padding-top: 100px;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
