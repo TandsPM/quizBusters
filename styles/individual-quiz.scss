@@ -86,8 +86,7 @@ h3 {
 /* mobile styles */
 @media only screen and (max-width: 768px) {
   .container {
-    max-width: 80%;
-    min-width: 50%;
+    padding: 1em;
   }
 }
 
