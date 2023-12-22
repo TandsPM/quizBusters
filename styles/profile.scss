@@ -3,7 +3,17 @@
   padding-bottom: 500px;
 }
 
+h1,
 h2,
+h3,
 h4 {
   color: black;
+}
+
+h1,
+h3 {
+  color: black;
+  display: flex;
+  margin-bottom: 20px;
+  padding: 20px;
 }
