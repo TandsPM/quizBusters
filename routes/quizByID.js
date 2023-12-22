@@ -27,8 +27,8 @@ router.get('/:quizId', (req, res) => {
   // Retrieve the quiz ID from the URL parameters
   const quizId = req.params.quizId;
 
-  const user = req.session.user;
-
+  const user = req.session.user_id;
+  
   const quizQuery = `
   SELECT * FROM quizzes 
   WHERE quizzes.id = '${quizId}';`;
@@ -61,7 +61,8 @@ router.get('/:quizId', (req, res) => {
         quizData,
         questionsData,
         optionsData,
-        authorData
+        authorData,
+        user
       };
       res.render('quiz_id', {dashboard} );
     })

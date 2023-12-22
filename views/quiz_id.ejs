@@ -71,6 +71,12 @@
     </main>
   </section>
   <input id="submitButton" type="button" value="Submit">
+  <br>
+  <br>
+   <% if (Number(dashboard.user) === dashboard.quizData.rows[0].owner_id){ %>
+    <input id="deleteButton" type="button" value="Delete">
+  <% } %>
+
   <div id="questionCounter"><%= questionCounter %></div>
 </body>
 
