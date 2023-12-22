@@ -94,12 +94,17 @@ h3 {
   background-color: #6a8dac;
   color: #ccc;
 }
-
+#page-content {
+  padding-top: 70px;
+}
 
 /* mobile styles */
 @media only screen and (max-width: 850px) {
   .container {
     padding: 1em;
+  }
+  #page-content {
+    padding-top: 70px;
   }
 }
 
