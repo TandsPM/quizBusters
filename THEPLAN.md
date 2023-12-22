@@ -16,23 +16,23 @@
 * Practice demoing an app to help prepare for the final project and employer interviews
 
 ### Functionality Requirements: ALL COMPLETE
-* ES6 for server-side (NodeJS) code
+* ES6 for server-side (NodeJS) code (COMPLETE) 
 
-* NodeJS
+* NodeJS (COMPLETE) 
 
 * Express:
-    * RESTful routes
+    * RESTful routes (COMPLETE) 
 
 * One or more CSS or UI "framework"s:
-    * jQuery
-    * A CSS preprocessor such as SASS, Stylus, or PostCSS for styling -- or CSS Custom properties and no CSS preprocessor
+    * jQuery (COMPLETE) 
+    * A CSS preprocessor such as SASS, Stylus, or PostCSS for styling -- or CSS Custom properties and no CSS preprocessor (COMPLETE)
 
-* PostgreSQL and pg (with promises) for DBMS
+* PostgreSQL and pg (with promises) for DBMS (COMPLETE) 
 
-* git for version control
+* git for version control (COMPLETE) 
 
 ### Stretch Functionality: 
-* SPA (Single-Page Application) Behaviour
+* SPA (Single-Page Application) Behaviour (SEMI COMPLETE)
 
 * Hosting, such as Railway.app, netlify, github pages, AWS, or Azure
 
@@ -43,15 +43,15 @@
 * Registered users can create quizzes (COMPLETE)
   * constructive forms for creating quizzes (COMPLETE)
   * multiple choice forms and text forms available (COMPLETE)
-  * privacy: users can make their quiz unlisted (url can be visited) 
+  * privacy: users can make their quiz unlisted (url can be visited) (SEMI-COMPLETE)
 
-* all users can attempt a quiz
-  * users can see the results of their recent attempt
-  * users can share a link to the result of their attempt // quiz/:id
+* all users can attempt a quiz (COMPLETE)
+  * users can see the results of their recent attempt (COMPLETE)
+  * users can share a link to the result of their attempt // quiz/:id 
 
-* tumblr/pinterest style homepage/dashboard of all extant quizzes 
-  * users can share a link to a single quiz
-  * users can see a list of public quizzes on the home page
+* tumblr/pinterest style homepage/dashboard of all extant quizzes (COMPLETE)
+  * users can share a link to a single quiz (COMPLETE)
+  * users can see a list of public quizzes on the home page (COMPLETE)
 
 * account locked edit and delete for quizzes 
 

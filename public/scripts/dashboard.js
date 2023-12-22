@@ -7,16 +7,17 @@ $(document).ready(function() {
     // Check if the user is logged in
     if ($('#loginButton').text() === 'Logout') {
       // If logged in, redirect to the dashboard
-      window.location.href = '/dashboard';
-    } else {
-      // If not logged in, redirect to the index page
       window.location.href = '/index';
+    } else {
+      alert("no user found!")// If not logged in, redirect to the index page
+      window.location.href = '/dashboard';
     }
   });
 
   // handling logout button
   $('#logoutButton').on('click', function (event) {
     event.preventDefault();
+    res.session = null
     logoutUser();
   });
 
