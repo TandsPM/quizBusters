@@ -13,6 +13,7 @@
 .quiz-card-layout {
   display: grid;
   grid-template-columns: auto auto auto;
+  gap: 20px;
 }
 
 .quiz-card {
@@ -20,7 +21,7 @@
   text-decoration: none;
   color: inherit;
   padding: 10px;
-  border: 1px solid black;
+  border: 2px solid #324a67;
   background-color: #567dab;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
