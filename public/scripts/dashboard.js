@@ -56,14 +56,13 @@ function loginStatus() {
   });
 }
 
-
-
-
 const submitQuiz = function() {
   
   let selectedOptionIds = [];
   let selectedOptionScores = [];
-  
+  let total = Number($('#questionCounter').text())
+
+  console.log("total: ", total)
   $("#myform input[type=radio]:checked").each(function() {
     const temp = $(this).data("correct") ? "true" : "false";
     
@@ -73,13 +72,15 @@ const submitQuiz = function() {
   const data = {
     selectedOptionIds,
     selectedOptionScores,
+    total
   }
-  
+  console.log(data)
   $.ajax({
     url: "http://localhost:8080/quiz/quiz_id",
     data: data,
     type: "POST",
     success: function(result){
+      $('#score').slideDown(900).css("display", "block").text(`Your Score is ${result.score}`)
       console.log("Success!", result);
     },
     error: function(err){

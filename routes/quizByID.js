@@ -84,31 +84,19 @@ router.post('/:quiz_id', (req, res) => {
   console.log("body ", reqBody);
   const selections = reqBody.selectedOptionIds
   const correctAnswers = reqBody.selectedOptionScores
-  const total = selections.length
+  const total = req.body.total
   console.log("selections: ", selections)
   console.log("correctAnswers: ", correctAnswers);
   let score = 0;
-  for (i = 0; i < total; i++){
+  for (i = 0; i < selections.length; i++){
     console.log ("correctAnswers[i]: ", correctAnswers[i].length)
     if (correctAnswers[i].length < 5){
       score ++
     }
-    console.log (`your score is ${score} / ${total}`)
   }
   res.json({ score: `${score} / ${total}` })
 });
 
-// Function to calculate total score 
-function calculateTotalScore(userAnswers) {
-  // Add  scoring logic here
-  // Example: Loop through userAnswers and calculate the score
-  let totalScore = 0;
-  for (const questionId in userAnswers) {
-    // Add scoring logic based on correct/incorrect answers
-    // Example: totalScore += (userAnswers[questionId] === correctAnswer) ? 1 : 0;
-  }
-  return totalScore;
-}
 
 
 

@@ -32,14 +32,14 @@
       </label>
       <br />
 <div id="scoreContainer">
-
+<p id="score">  </p>
 </div>
       <form name="myform" id="myform">
       <!-- // for loop to make questions  -->
       <% const questions=dashboard.questionsData.rows %>
 
       <% let questionCounter=0; %>
-
+      
       <% for (question of questions) { %>
 
         <div class="quiz-card-container">
@@ -67,10 +67,10 @@
         <% questionCounter++; %>
       <% } %>
       </form>
-
     </main>
   </section>
   <input id="submitButton" type="button" value="Submit">
+  <div id="questionCounter"><%= questionCounter %></div>
 </body>
 
 </html>
