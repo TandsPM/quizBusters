@@ -2,25 +2,20 @@
 ////                     DASHBOARD                            ////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-.dashboard-page {
-  display: flex;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
+// .dashboard-page {
+//   display: flex;
+//   justify-content: center;
+//   width: 100%;
+//   margin: 0;
+//   padding: 0;
+// }
 
 .quiz-card-layout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1200px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 .quiz-card {
-  flex: 0 0 calc(50% - 20px);
   margin: 10px;
   text-decoration: none;
   color: inherit;
@@ -29,7 +24,6 @@
   background-color: #567dab;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
 }
 
 .quiz-card:hover {
@@ -69,7 +63,7 @@ font-size: 16px;
 .reactions {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   padding: 20px;
   gap: 5px;
@@ -84,45 +78,6 @@ font-size: 16px;
 .reactions .fa-heart:hover {
   color: #f28f3b;
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-////                     INDIVIDUAL QUIZ                           ////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-// .container {
-//   max-width: 800px;
-//   margin: 0 auto;
-//   padding: 20px;
-// }
-
-// .quiz-card-container {
-//   margin-bottom: 20px;
-//   border: 1px solid #ccc;
-//   border-radius: 8px;
-//   padding: 10px;
-//   background-color: #fff;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-// }
-
-// .quiz-content {
-//   margin-bottom: 20px;
-// }
-
-// #submitQuiz {
-//   padding: 10px;
-//   height: 100px;
-//   background-color: #588B8B;
-//   color:#231515;
-//   border: none;
-//   border-radius: 5px;
-//   cursor: pointer;
-//   margin-top: 400px;
-// }
-
-// #submitQuiz:hover {
-//   background-color: #406666;
-// }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
