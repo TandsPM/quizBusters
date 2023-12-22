@@ -30,6 +30,9 @@ $(document).ready(function() {
   // grading quiz
   $('#submitButton').on("click", () => {    
     submitQuiz()
+  
+    // Scroll to the top of the page with animation
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
   });
 
 });
@@ -55,20 +58,17 @@ function loginStatus() {
 
 
 
+
 const submitQuiz = function() {
   
   let selectedOptionIds = [];
   let selectedOptionScores = [];
-  let temp;
+  
   $("#myform input[type=radio]:checked").each(function() {
-    if(this["data-correct"]){
-      temp = "true";
-    } else {
-      temp = "false";
-    }
+    const temp = $(this).data("correct") ? "true" : "false";
+    
     selectedOptionIds.push(this.id);
     selectedOptionScores.push(temp);
-    for ()
   });
   const data = {
     selectedOptionIds,
@@ -76,14 +76,14 @@ const submitQuiz = function() {
   }
   
   $.ajax({
-    url: "http://localhost:8080/quiz/2",
+    url: "http://localhost:8080/quiz/quiz_id",
     data: data,
     type: "POST",
     success: function(result){
-      console.log("We are in the success function ", result);
+      console.log("Success!", result);
     },
     error: function(err){
-      console.log("We are in the error function ", err);
+      console.log("Error:", err);
     }
   });
 

@@ -80,33 +80,22 @@ router.get('/:quizId', (req, res) => {
 router.post('/:quiz_id', (req, res) => {
   const user_id = req.session.user_id; // Assumes user ID is stored in the session
   
-  const quiz_id = req.params.quiz_id;
-  // const userAnswers = req.body.userAnswers; // Assumes the user's answers are sent in the request body
   const reqBody = req.body;
-  console.log("user_id: ", user_id)
-  console.log("quiz_id: ", quiz_id);
   console.log("body ", reqBody);
-  // console.log("userAnswers: ", userAnswers);
-  
-  
-  // console.log("information to submit:", "user_id", user_id, "body", body )
-  // Calculate total and total_score based on user's answers (logic in need of adjusting)
-  // const total = Object.keys(userAnswers).length;
-  // const total_score = calculateTotalScore(userAnswers);
-
-  // const insertSubmissionQuery = `
-  //   INSERT INTO quiz_submission (user_id, quiz_id, total, total_score)
-  //   VALUES ('${user_id}', '${quiz_id}', '${total}', '${total_score}')
-  //   RETURNING id;`;
-
-  // db.query(insertSubmissionQuery)
-  //   .then(result => {
-  //     const submissionId = result.rows[0].id;
-  //     res.redirect(`/quiz/${quiz_id}/result/${submissionId}`);
-  //   })
-  //   .catch(err => {
-  //     res.status(500).json({ error: err.message });
-  //   });
+  const selections = reqBody.selectedOptionIds
+  const correctAnswers = reqBody.selectedOptionScores
+  const total = selections.length
+  console.log("selections: ", selections)
+  console.log("correctAnswers: ", correctAnswers);
+  let score = 0;
+  for (i = 0; i < total; i++){
+    console.log ("correctAnswers[i]: ", correctAnswers[i].length)
+    if (correctAnswers[i].length < 5){
+      score ++
+    }
+    console.log (`your score is ${score} / ${total}`)
+  }
+  res.json({ score: `${score} / ${total}` })
 });
 
 // Function to calculate total score 
@@ -125,56 +114,3 @@ function calculateTotalScore(userAnswers) {
 
 module.exports = router;
 
-
-// router.post('/', (req, res) => {
-//   const owner_id = req.session.user_id;
-//   const body = req.body;
-//   const title = body.quizTitle;
-//   const author = body.quizAuthor;
-  
-//   console.log("body: ", body);
-//   // console.log("information to submit:", "owner_id", owner_id, "body", body )
-
-//   const quizValues = [owner_id, title, 0]; // add privacy to values, query and as variable
-//   db.query(`
-//     INSERT INTO quizzes (owner_id, title, rating) 
-//     VALUES ($1, $2, $3)
-//     RETURNING *;`, quizValues)
-
-//     .then((quizData) => {
-//       const questions = body.questionNamesArray;
-//       let optionsCount = 0
-//       for (let i = 0; i < questions.length; i++) {
-//         const questionsValues = [quizData.rows[0].id, questions[i], body.optionsCountArray[i]];
-//         db.query(`
-//         INSERT INTO questions (quiz_id, content, number_of_options) 
-//         VALUES ($1, $2, $3)
-//         RETURNING *;`, questionsValues
-//         )
-
-//           .then((questionData) => {
-//             const options = body.optionsArray;
-//             const cap = (Number(optionsCount) + Number(body.optionsCountArray[i]))
-//             for (let u = optionsCount; u < cap; u++) {
-
-//               const optionsValues = [questionData.rows[0].id, options[u].optionText, options[u].isCorrect];
-//               db.query(`
-//               INSERT INTO options (question_id, content, correct) 
-//               VALUES ($1, $2, $3)
-//               RETURNING *;`, optionsValues
-//               )
-//               .then((optionsData) => {
-//               })
-//             }
-//             optionsCount += Number(body.optionsCountArray[i]);
-//           });
-//       }
-//     })
-//     .then(() => {
-//       res.json({ redirect: 'http://localhost:8080/' }); // Redirect after successful insertion
-//     })
-//     .catch(err => {
-//       res.status(500).json({ error: err.message });
-//       res.json({ redirect: 'http://localhost:8080/new-quiz"' }); // Redirect on error
-//     });
-// });

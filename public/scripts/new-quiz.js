@@ -163,7 +163,7 @@ return data;
 const submitNewQuiz = function() {
   $.post('/new-quiz', collectData())
     .then(function(data) {
-      console.log("Data Received", data);
+      window.location.href = "/index";;
     })
     .catch(function(err) {
       console.log("Error", err);
