@@ -18,17 +18,21 @@
 
       <label for="individual-quiz" class="individual-quiz-title">
         <% const title=JSON.stringify(dashboard.quizData.rows[0].title) %>
-        <h1>
+        <h1 id="thisQuizTitle">
           <%= title %>
         </h1>
       </label>
 
       <label for="individual-quiz" class="individual-quiz-author">
-        <h3> by <%= (dashboard.authorData.rows[0].name) %>
+        <h3> by 
+          <div id="thisQuizAuthor">
+            <%= (dashboard.authorData.rows[0].name) %>
+          </div>
         </h3>
       </label>
       <br />
 
+      <form name="myform" id="myform">
       <!-- // for loop to make questions  -->
       <% const questions=dashboard.questionsData.rows %>
 
@@ -47,8 +51,9 @@
                 <% const options = dashboard.optionsData.rows %>
                 <% for (let i = 0; i < options.length; i++) { %>
                   <% if (options[i].question_id === question.question_id) { %>
+                    <%console.log("options[i]: ", options[i])%>
                     <div class="answer-option">
-                      <input type="radio" name="<%= `question_${question.question_id}_option` %>" value="<%= options[i].option_content %>" />
+                      <input type="radio" id="<%=options[i].option_id%>" data-correct="<%=options[i].correct%>" name="<%= `question_${question.question_id}_option` %>" value="<%= options[i].option_content %>" />
                       <%= options[i].option_content %>
                     </div>
                   <% } %>
@@ -60,11 +65,12 @@
 
         <% questionCounter++; %>
       <% } %>
+      </form>
 
 
     </main>
   </section>
-  <button id="submitQuiz">Submit</button>
+  <input id="submitButton" type="button" value="Submit">
 </body>
 
 </html>

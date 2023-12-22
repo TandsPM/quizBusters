@@ -9,3 +9,4 @@ CREATE TABLE questions (
   content TEXT,
   number_of_options INTEGER
 );
+

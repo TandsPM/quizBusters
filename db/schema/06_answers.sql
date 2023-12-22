@@ -11,3 +11,4 @@ CREATE TABLE answers (
   value INTEGER DEFAULT 0
 );
 
+
