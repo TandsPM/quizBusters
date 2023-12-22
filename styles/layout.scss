@@ -23,8 +23,9 @@ body {
   // background-image: url("https://www.transparenttextures.com/patterns/concrete-wall-2.png");
   margin-left: auto;
   margin-right: auto;
-  font-size: 24px;
+  font-size: 18px;
   font-family: 'Montserrat Alternates', sans-serif;
+  min-width: 499px;
 }
 
 .container {
@@ -134,7 +135,7 @@ body {
   width: 90%;
   background-color: whitesmoke;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Source Sans 3', sans-serif;
   word-wrap: break-word;
 
@@ -146,16 +147,6 @@ body {
   box-shadow: 5px 5px #C8553D;
 }
 
-// .quiz-box header,
-// .quiz-box footer {
-//   display: flex;
-//   justify-content: space-between;
-//   flex-direction: row;
-//   align-items: flex-end;
-//   padding: 5px 10px 10px;
-//   margin: 10px;
-// }
-
 .quiz-box header {
   word-wrap: break-word;
   word-break: break-word;
@@ -166,11 +157,12 @@ body {
   text-shadow: 1px 1px #C8553D;
 }
 
-// .quiz-box footer .reactions {
-//   display: flex;
-//   flex-direction: row;
-//   font-size: medium;
-// }
+.quiz-box footer .reactions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+  font-size: medium;
+}
 
 .quiz-box footer .reactions .reaction {
   margin: 3px;
@@ -247,19 +239,3 @@ body {
     flex: 0 0 calc(50% - 20px);
   }
 }
-
-
-/* padding-top: 140px;
-height: 520px;
-width: 100% ;
-min-width: 300px;
-margin-left: auto;
-margin-right: auto;
-color: rgb(255, 255, 255)000;
-font-family: 'Source Sans 3', sans-serif;
-display: flex;
-flex-direction: column;
-align-items: center;
-background-color: #888888;
-background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
-} */
