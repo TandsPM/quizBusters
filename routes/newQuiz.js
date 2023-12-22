@@ -29,14 +29,15 @@ router.post('/', (req, res) => {
   const body = req.body;
   const title = body.quizTitle;
   const author = body.quizAuthor;
-  
-  console.log("body: ", body);
+  const privacy = body.privacy
+
+  console.log("privacy: ", privacy);
   // console.log("information to submit:", "owner_id", owner_id, "body", body )
 
-  const quizValues = [owner_id, title, 0]; // add privacy to values, query and as variable
+  const quizValues = [owner_id, author, title, privacy, 0]; // add privacy to values, query and as variable
   db.query(`
-    INSERT INTO quizzes (owner_id, title, rating) 
-    VALUES ($1, $2, $3)
+    INSERT INTO quizzes (owner_id, author, title, privacy, rating) 
+    VALUES ($1, $2, $3, $4, $5)
     RETURNING *;`, quizValues)
 
     .then((quizData) => {

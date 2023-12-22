@@ -122,6 +122,9 @@ const collectData = function() {
   const quizTitle = $("#new-title").val();
   const quizAuthor = $("#new-author").val();
   const questions = $(".new-quiz-questions").find(".individual-question");
+  const privacyCheckbox = $("#privacy");
+  const privacy = privacyCheckbox.is(":checked");
+
 
   const questionNamesArray = [];
   const optionsCountArray = [];
@@ -154,7 +157,8 @@ const data = {
   quizAuthor,
   questionNamesArray,
   optionsCountArray,
-  optionsArray
+  optionsArray,
+  privacy
 };
 return data;
 }
