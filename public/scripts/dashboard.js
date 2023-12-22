@@ -57,11 +57,15 @@ function loginStatus() {
 }
 
 const submitQuiz = function() {
-  
+  let trueCorrects = [];
+  $("#myform input[type=radio]").each(function() {
+    if ($(this).data("correct")){
+      trueCorrects.push(this.value)
+    }
+  })
   let selectedOptionIds = [];
   let selectedOptionScores = [];
   let total = Number($('#questionCounter').text())
-
   console.log("total: ", total)
   $("#myform input[type=radio]:checked").each(function() {
     const temp = $(this).data("correct") ? "true" : "false";
@@ -72,6 +76,7 @@ const submitQuiz = function() {
   const data = {
     selectedOptionIds,
     selectedOptionScores,
+    trueCorrects,
     total
   }
   console.log(data)
@@ -81,7 +86,7 @@ const submitQuiz = function() {
     type: "POST",
     success: function(result){
       $('#score').slideDown(900).css("display", "block").text(`Your Score is ${result.score}`)
-      console.log("Success!", result);
+      $('#correctAnswers').slideDown(900).css("display", "block").text(`The right answers were ${formatAnswers(trueCorrects)}`)
     },
     error: function(err){
       console.log("Error:", err);
@@ -90,3 +95,20 @@ const submitQuiz = function() {
 
 };
 
+function formatAnswers(answerArray) {
+  const formattedAnswers = [];
+
+  answerArray.forEach(item => {
+    formattedAnswers.push(String(item));
+  });
+
+  if (formattedAnswers.length === 0) {
+      return "";
+  } else if (formattedAnswers.length === 1) {
+      return formattedAnswers[0];
+  } else {
+      const lastAnswer = formattedAnswers.pop();
+      const formattedString = formattedAnswers.join(', \n') + ', \nand ' + lastAnswer;
+      return formattedString;
+  }
+}
