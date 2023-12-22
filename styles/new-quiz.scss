@@ -46,25 +46,6 @@
   color: #007bff;
 }
 
-.warning {
-  color: rgb(131, 0, 0);
-}
-
-/*
- * error printer rolldown
- */
-
-#error-printer {
-  display: none;
-  margin: 5px -40px;
-  border: 2px dashed whitesmoke;
-  padding-left: 1em;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  border-radius: 20px;
-  background-color: rgb(126, 62, 62);
-  color: whitesmoke;
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,6 +61,9 @@
   margin-bottom: 50px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ 
+  background-color: #6a8dac;
+  color: #ccc;
 }
 
 .new-quiz-info input[type="radio"] {
@@ -111,14 +95,23 @@
 }
 
 .add-question-btn {
+  height: 50px;
+  width: 100px;
   margin: 30px;
   border-radius: 5px;
+  background-color: #6a8dac;
+  color: #ccc;
 }
 
 #submitButton {
+  height: 50px;
+  width: 100px;
   margin: 30px;
   border-radius: 5px;
+  background-color: #6a8dac;
+  color: #ccc;
 }
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
